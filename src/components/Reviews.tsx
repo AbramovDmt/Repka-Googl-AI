@@ -95,13 +95,13 @@ export default function Reviews() {
         <div className="mt-12 text-center">
           <a
             id="more-reviews-external-cta"
-            href="https://www.avito.ru/zaprudnya/doma_dachi_kottedzhi/dom_48_m_7926314037"
+            href="https://www.avito.ru/zaprudnya/doma_dachi_kottedzhi/dom_48_m_7926314037?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller&guestsDetailed=%7B%22version%22%3A1%2C%22totalCount%22%3A2%2C%22adultsCount%22%3A2%2C%22children%22%3A%5B%5D%7D#open-reviews-list"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-accent hover:text-brand-accent-hover transition-colors font-mono tracking-wider border-b border-brand-accent/40 pb-0.5"
           >
             <MessageSquare size={14} />
-            <span>Читать все 40+ отзывов на Авито</span>
+            <span>Все отзывы на Сергея на Авито</span>
           </a>
         </div>
 
