@@ -23,8 +23,8 @@ export default function Atmosphere() {
 
           {/* Heading */}
           <h2 className="font-serif italic font-normal text-3xl sm:text-5xl text-brand-text mb-8 leading-tight tracking-tight">
-            Приехать в пятницу. <br className="hidden sm:inline" />
-            Выдохнуть в субботу.
+            Просто приехать. <br className="hidden sm:inline" />
+            И никуда не спешить.
           </h2>
 
           {/* Pull quote text block */}
