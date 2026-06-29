@@ -41,7 +41,7 @@ export default function FinalCTA() {
                 <span className="text-xs uppercase font-mono tracking-widest font-semibold">Ваш хозяин Сергей</span>
               </div>
               <h2 className="font-serif italic font-normal text-3xl sm:text-5xl text-white leading-tight tracking-tight">
-                Проверить свободные даты
+                Узнать свободные даты
               </h2>
               <p className="text-xs sm:text-sm text-brand-bg/80 leading-relaxed font-light max-w-xl">
                 Напишите мне в мессенджер — с радостью подберу свободные даты, помогу рассчитать персональную скидку на длительный заезд и отвечу на любые вопросы. Почти всегда отвечаю в течение получаса!

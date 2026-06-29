@@ -62,7 +62,9 @@ export default function Reviews() {
                   <span className={`text-[10px] font-mono tracking-wide px-2.5 py-0.5 rounded border ${
                     review.source === 'Авито'
                       ? 'border-blue-500/20 text-blue-600 bg-blue-500/5'
-                      : 'border-brand-accent/20 text-brand-accent bg-brand-accent/5'
+                      : review.source === 'Циан'
+                        ? 'border-brand-green/30 text-brand-green bg-brand-green/5'
+                        : 'border-brand-accent/20 text-brand-accent bg-brand-accent/5'
                   }`}>
                     {review.source}
                   </span>

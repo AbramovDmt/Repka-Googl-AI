@@ -31,7 +31,7 @@ export default function Footer() {
             <span className="font-serif italic font-bold text-3xl leading-none tracking-tight text-white select-none">
               Репка
             </span>
-            <span className="text-xs leading-none uppercase tracking-widest font-mono border border-white/20 text-white/70 px-1.5 py-1 rounded flex items-center">
+            <span className="text-xs leading-none uppercase tracking-widest font-mono border border-white/20 text-white/70 px-1.5 py-1 rounded flex items-center translate-y-[2px]">
               Дом в роще
             </span>
           </div>
@@ -45,8 +45,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Col 2: Navigation Links (2.5 cols) */}
-        <div className="md:col-span-2.5 space-y-4">
+        {/* Col 2: Navigation Links (3 cols) */}
+        <div className="md:col-span-3 space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">НАВИГАЦИЯ</span>
           <ul className="space-y-2.5 text-xs sm:text-sm font-medium">
             {[
@@ -73,8 +73,8 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Col 3: Direct Address & Contacts details (3 cols) */}
-        <div className="md:col-span-3 space-y-4 text-left">
+        {/* Col 3: Direct Address & Contacts details (2.5 cols) */}
+        <div className="md:col-span-2.5 space-y-4 text-left">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">КОНТАКТЫ И АДРЕС</span>
           <div className="space-y-3.5 text-xs sm:text-sm text-brand-bg/85 font-light leading-relaxed">
             
@@ -122,22 +122,24 @@ export default function Footer() {
         {/* Col 4: Emergencies contact box (2.5 cols) */}
         <div className="md:col-span-2.5 space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">СЛУЖБЫ СПАСЕНИЯ</span>
-          <div className="bg-white/5 p-4 rounded border border-white/5 space-y-3 text-xs">
-            <a href="tel:112" className="flex items-center justify-between gap-3 group">
-              <span className="flex items-center gap-2 font-light text-brand-bg/80 group-hover:text-white transition-colors">
-                <Siren size={14} className="text-brand-accent shrink-0" />
-                МЧС
-              </span>
-              <span className="font-mono font-bold text-white group-hover:text-brand-accent transition-colors">112</span>
-            </a>
-            <a href="tel:103" className="flex items-center justify-between gap-3 group">
-              <span className="flex items-center gap-2 font-light text-brand-bg/80 group-hover:text-white transition-colors">
-                <Stethoscope size={14} className="text-brand-accent shrink-0" />
-                Скорая
-              </span>
-              <span className="font-mono font-bold text-white group-hover:text-brand-accent transition-colors">103</span>
-            </a>
-            <div className="h-[1px] bg-white/10" />
+          <div className="bg-white/5 p-4 rounded border border-white/5 text-xs">
+            <div className="grid grid-cols-2 gap-3">
+              <a href="tel:112" className="flex flex-col gap-1.5 group">
+                <span className="flex items-center gap-1.5 font-light text-brand-bg/70 group-hover:text-white transition-colors">
+                  <Siren size={13} className="text-brand-accent shrink-0" />
+                  МЧС
+                </span>
+                <span className="font-mono font-bold text-white text-base group-hover:text-brand-accent transition-colors">112</span>
+              </a>
+              <a href="tel:103" className="flex flex-col gap-1.5 group">
+                <span className="flex items-center gap-1.5 font-light text-brand-bg/70 group-hover:text-white transition-colors">
+                  <Stethoscope size={13} className="text-brand-accent shrink-0" />
+                  Скорая
+                </span>
+                <span className="font-mono font-bold text-white text-base group-hover:text-brand-accent transition-colors">103</span>
+              </a>
+            </div>
+            <div className="h-[1px] bg-white/10 my-3" />
             <p className="text-[10px] text-brand-bg/40 leading-normal font-light">
               Адрес хорошо известен местным службам доставки и такси.
             </p>

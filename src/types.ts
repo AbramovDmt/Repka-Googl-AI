@@ -19,7 +19,7 @@ export interface Review {
   id: string;
   name: string;
   date: string;
-  source: 'Авито' | 'Суточно.ру';
+  source: 'Авито' | 'Суточно.ру' | 'Циан';
   rating: number;
   text: string;
   avatar?: string;

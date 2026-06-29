@@ -1,5 +1,6 @@
+import { useRef } from 'react';
 import { ArrowDown, Send, Image } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import heroImage from '../assets/images/hero.png';
 import ContactPopover from './ContactPopover';
 
@@ -10,22 +11,29 @@ interface HeroProps {
 }
 
 export default function Hero({ onGalleryClick }: HeroProps) {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const imageY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? ['0px', '0px'] : ['0px', '150px']);
+
   return (
     <div
       id="hero-section"
+      ref={heroRef}
       className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-brand-bg-dark bg-grain"
     >
-      {/* Background Image Container */}
-      <div className="absolute inset-0 z-0">
-        <img
+      {/* Background Image Container — slightly oversized to cover the parallax shift */}
+      <div className="absolute -top-[200px] -bottom-[200px] inset-x-0 z-0 overflow-hidden">
+        <motion.img
           src={HERO_IMAGE_PATH}
-          alt="A-frame домик Репка в берёзовой роще"
-          className="w-full h-full object-cover object-center scale-[1.02]"
+          alt="Треугольный домик Репка в берёзовой роще"
+          style={{ y: imageY }}
+          className="w-full h-full object-cover object-center"
           referrerPolicy="no-referrer"
         />
-        {/* Natural gradient overlays to blend into text and maintain accessibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark via-brand-bg-dark/40 to-brand-bg-dark/60 z-10" />
       </div>
+      {/* Natural gradient overlays to blend into text and maintain accessibility — sized to the actual viewport, not the oversized image box */}
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark via-brand-bg-dark/40 to-brand-bg-dark/60 z-10" />
 
       {/* Main Text Content */}
       <div className="relative z-20 max-w-4xl mx-auto px-6 text-center text-brand-bg-white flex flex-col items-center justify-center">
@@ -58,7 +66,7 @@ export default function Hero({ onGalleryClick }: HeroProps) {
           transition={{ duration: 1.2, delay: 0.4, ease: 'easeOut' }}
           className="font-sans text-brand-bg/90 max-w-2xl text-base sm:text-lg md:text-xl leading-relaxed mb-10 font-light"
         >
-          63 км от Москвы · Новый A-frame дом 2024 года · Дровяная баня · Огневая зона · Канал им. Москвы в 300 метрах
+          63 км от Москвы · Новый треугольный дом 2024 года · Дровяная баня · Огневая зона · Канал им. Москвы в 300 метрах
         </motion.p>
 
         {/* Dual Actions CTAs */}
