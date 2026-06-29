@@ -48,7 +48,9 @@ export default function Hero({ onGalleryClick }: HeroProps) {
           transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
           className="font-serif italic font-normal text-4xl sm:text-6xl md:text-7xl leading-[1.1] mb-6 tracking-tight max-w-3xl"
         >
-          Выдохнуть в берёзовой роще
+          Просто приехать.
+          <br />
+          И никуда не спешить.
         </motion.h1>
 
         {/* Subhead details list */}

@@ -84,15 +84,21 @@ export default function Included() {
         {/* Floating Callout box banner */}
         <div className="mt-12 bg-brand-text text-brand-bg-white rounded-md p-8 relative overflow-hidden bg-grain shadow-lg">
           <div className="absolute top-0 right-0 h-full w-1/3 opacity-15 pointer-events-none hidden md:block">
-            <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-brand-sand stroke-1">
-              <polygon points="50,10 90,90 10,90" />
+            <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-brand-sand stroke-1" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8,62 Q46,26 48,24 Q50,26 88,62" />
+              <path d="M22,58 L22,90 L74,90 L74,58" />
+              <circle cx="36" cy="72" r="7" />
+              <path d="M52,90 L52,70 L66,70 L66,90" />
+              <path d="M62,36 L62,22 L70,22 L70,40" />
+              <path d="M64,20 Q58,12 65,6" />
+              <path d="M70,20 Q76,11 69,3" />
             </svg>
           </div>
           <div className="relative z-10 max-w-3xl">
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand-sand block mb-2">ВАЖНОЕ ПРИМЕЧАНИЕ</span>
             <h4 className="font-serif italic text-xl sm:text-2xl mb-4 text-white">Банный ритуал в «Репке»</h4>
             <p className="text-sm text-gray-300 leading-relaxed font-light mb-4">
-              Наша баня — традиционная, дровяная, с мягким мелкодисперсным паром. Готовится хозяином Сергеем под ваш запрос. Она бронируется отдельно (минимум 3 часа за 4 500 ₽). Мы топим баню к согласованному времени, чтобы вы зашли в идеальную температуру.
+              Наша баня — традиционная, дровяная, с мягким мелкодисперсным паром. Баню можно заказать отдельно от домика — внутри свой санузел, душ, мини-кухня и холодильник, всё нужное под рукой. Доступна от 1 500 ₽/час (минимум 3 часа) — отдельно или в комплексе с домиком.
             </p>
             <div className="flex flex-wrap gap-4 items-center mt-6 pt-4 border-t border-white/10 text-xs sm:text-sm font-mono text-brand-sand">
               <span>✓ Травяной чай включен</span>
