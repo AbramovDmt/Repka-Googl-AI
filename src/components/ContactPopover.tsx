@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { Send, MessageCircle } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { getTelegramLink, MAX_LINK } from '../lib/contacts';
+import MaxIcon from './icons/MaxIcon';
 
 interface ContactPopoverProps {
   telegramText?: string;
@@ -70,7 +71,7 @@ export default function ContactPopover({ telegramText, align = 'left', className
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-brand-text hover:bg-brand-bg transition-colors"
             >
-              <MessageCircle size={16} className="text-brand-accent" />
+              <MaxIcon size={16} className="text-brand-accent" />
               <span>Написать в MAX</span>
             </a>
           </motion.div>

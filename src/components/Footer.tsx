@@ -1,5 +1,6 @@
-import { Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Send } from 'lucide-react';
 import { MAX_LINK } from '../lib/contacts';
+import MaxIcon from './icons/MaxIcon';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -99,7 +100,7 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-2.5 items-center">
-              <MessageCircle size={14} className="text-brand-accent shrink-0" />
+              <MaxIcon size={14} className="text-brand-accent shrink-0" />
               <a
                 href={MAX_LINK}
                 target="_blank"
