@@ -1,0 +1,6 @@
+{
+  "name": "A-frame домик Репка",
+  "description": "Лендинг для посуточной аренды уютного A-frame домика «Репка» в берёзовой роще в Подмосковье",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

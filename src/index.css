@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  
+  --color-brand-bg: #F5EFE0;
+  --color-brand-bg-white: #FDFAF5;
+  --color-brand-bg-dark: #1A2416;
+  --color-brand-text: #2C2416;
+  --color-brand-text-mid: #6B5B45;
+  --color-brand-accent: #C8742A;
+  --color-brand-accent-hover: #A85E1F;
+  --color-brand-green: #2D4A2D;
+  --color-brand-bark: #8B7355;
+  --color-brand-sand: #D4C4A0;
+}
+
+/* Custom scroll behavior and aesthetics */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-brand-bg-white);
+  color: var(--color-brand-text);
+  font-family: var(--font-sans);
+}
+
+/* Noise overlay effect */
+.bg-grain {
+  position: relative;
+}
+
+.bg-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* Hide scrollbar for gallery swipe elements on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Smooth transition for details/accordion answers */
+.faq-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+
+.faq-collapse.open {
+  grid-template-rows: 1fr;
+}
+
+.faq-collapse-content {
+  overflow: hidden;
+}
+
