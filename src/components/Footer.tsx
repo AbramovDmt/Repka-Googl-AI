@@ -95,12 +95,12 @@ export default function Footer() {
             <div className="flex gap-2.5 items-center">
               <Send size={14} className="text-brand-accent shrink-0 fill-current" />
               <a
-                href="https://t.me/abramovdmt"
+                href="https://t.me/Fedin800"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors font-medium"
               >
-                Telegram: @abramovdmt
+                Telegram: @Fedin800
               </a>
             </div>
 

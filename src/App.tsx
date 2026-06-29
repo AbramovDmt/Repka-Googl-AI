@@ -105,7 +105,7 @@ export default function App() {
       <div className="fixed bottom-4 left-4 z-40 sm:hidden">
         <a
           id="mobile-floating-tg"
-          href="https://t.me/abramovdmt?text=Здравствуйте!%20Хочу%20уточнить%20свободные%20даты%20для%20заезда%20в%20домик%20Репка."
+          href="https://t.me/Fedin800?text=Здравствуйте!%20Хочу%20уточнить%20свободные%20даты%20для%20заезда%20в%20домик%20Репка."
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 bg-[#22c55e] text-white px-4 py-3 rounded-full shadow-2xl hover:bg-[#16a34a] transition-all font-semibold text-xs border border-white/20"

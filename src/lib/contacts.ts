@@ -1,4 +1,4 @@
-export const TELEGRAM_USERNAME = 'abramovdmt';
+export const TELEGRAM_USERNAME = 'Fedin800';
 
 export const MAX_LINK = 'https://max.ru/u/f9LHodD0cOJJgYBRwhGQzeviJRLCzPLrO0tA6hcaT9B4x2QHAPBRD5gYMLE';
 

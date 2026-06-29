@@ -270,7 +270,11 @@ export default function BookingCalculator() {
                       id="checkbox-banya"
                       type="checkbox"
                       checked={banyaEnabled}
-                      onChange={(e) => setBanyaEnabled(e.target.checked)}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        setBanyaEnabled(checked);
+                        if (!checked) setBanyaOnly(false);
+                      }}
                       className="w-4 h-4 rounded mt-1 border-brand-sand-hover cursor-pointer accent-brand-accent"
                     />
                     <div className="text-left">
@@ -305,18 +309,20 @@ export default function BookingCalculator() {
                   )}
                 </div>
 
-                {banyaEnabled && (
-                  <label className="flex items-center gap-2.5 pt-3 border-t border-brand-sand/20 cursor-pointer select-none">
-                    <input
-                      id="checkbox-banya-only"
-                      type="checkbox"
-                      checked={banyaOnly}
-                      onChange={(e) => setBanyaOnly(e.target.checked)}
-                      className="w-4 h-4 rounded border-brand-sand-hover cursor-pointer accent-brand-accent"
-                    />
-                    <span className="text-xs text-brand-text-mid">Хочу только баню, без аренды домика</span>
-                  </label>
-                )}
+                <label className="flex items-center gap-2.5 pt-3 border-t border-brand-sand/20 cursor-pointer select-none">
+                  <input
+                    id="checkbox-banya-only"
+                    type="checkbox"
+                    checked={banyaOnly}
+                    onChange={(e) => {
+                      const checked = e.target.checked;
+                      setBanyaOnly(checked);
+                      if (checked) setBanyaEnabled(true);
+                    }}
+                    className="w-4 h-4 rounded border-brand-sand-hover cursor-pointer accent-brand-accent"
+                  />
+                  <span className="text-xs text-brand-text-mid">Хочу только баню, без аренды домика</span>
+                </label>
               </div>
 
               {/* Bicycle Rental Option */}
