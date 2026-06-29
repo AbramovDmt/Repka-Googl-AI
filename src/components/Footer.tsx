@@ -1,4 +1,4 @@
-import { Phone, MapPin, Send } from 'lucide-react';
+import { Phone, MapPin, Send, Siren, Stethoscope } from 'lucide-react';
 import { MAX_LINK } from '../lib/contacts';
 import MaxIcon from './icons/MaxIcon';
 
@@ -27,9 +27,14 @@ export default function Footer() {
         
         {/* Col 1: Brand Wordmark (4 cols) */}
         <div className="md:col-span-4 space-y-4">
-          <span className="font-serif italic font-bold text-3xl tracking-tight block text-white select-none">
-            Репка <span className="text-brand-accent">A-frame</span>
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="font-serif italic font-bold text-3xl leading-none tracking-tight text-white select-none">
+              Репка
+            </span>
+            <span className="text-xs leading-none uppercase tracking-widest font-mono border border-white/20 text-white/70 px-1.5 py-1 rounded flex items-center">
+              Дом в роще
+            </span>
+          </div>
           <p className="text-xs text-brand-bg/60 leading-relaxed font-light max-w-sm">
             Ваш идеальный уголок спокойствия и замедления в 63 км от столицы. Современный лесной дом с дровяной баней и открытой огневой зоной на вековом березовом участке.
           </p>
@@ -117,16 +122,22 @@ export default function Footer() {
         {/* Col 4: Emergencies contact box (2.5 cols) */}
         <div className="md:col-span-2.5 space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">СЛУЖБЫ СПАСЕНИЯ</span>
-          <div className="bg-white/5 p-4 rounded border border-white/5 space-y-2.5 text-xs">
-            <div className="flex justify-between items-center text-brand-bg/80">
-              <span className="font-light">☎ Единый МЧС:</span>
-              <span className="font-mono font-bold text-white">112</span>
-            </div>
-            <div className="flex justify-between items-center text-brand-bg/80">
-              <span className="font-light">🚑 Скорая помощь:</span>
-              <span className="font-mono font-bold text-white">103 / 03</span>
-            </div>
-            <div className="h-[1px] bg-white/10 my-2" />
+          <div className="bg-white/5 p-4 rounded border border-white/5 space-y-3 text-xs">
+            <a href="tel:112" className="flex items-center justify-between gap-3 group">
+              <span className="flex items-center gap-2 font-light text-brand-bg/80 group-hover:text-white transition-colors">
+                <Siren size={14} className="text-brand-accent shrink-0" />
+                МЧС
+              </span>
+              <span className="font-mono font-bold text-white group-hover:text-brand-accent transition-colors">112</span>
+            </a>
+            <a href="tel:103" className="flex items-center justify-between gap-3 group">
+              <span className="flex items-center gap-2 font-light text-brand-bg/80 group-hover:text-white transition-colors">
+                <Stethoscope size={14} className="text-brand-accent shrink-0" />
+                Скорая
+              </span>
+              <span className="font-mono font-bold text-white group-hover:text-brand-accent transition-colors">103</span>
+            </a>
+            <div className="h-[1px] bg-white/10" />
             <p className="text-[10px] text-brand-bg/40 leading-normal font-light">
               Адрес хорошо известен местным службам доставки и такси.
             </p>
@@ -138,7 +149,7 @@ export default function Footer() {
       {/* Extreme Bottom details details card */}
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs text-brand-bg/40 font-mono">
         <span>
-          © {currentYear} A-frame домик «Репка». Все права сохранены.
+          © {currentYear} «Репка» — дом в роще. Все права сохранены.
         </span>
         <div className="flex gap-4">
           <span>Сделано с любовью</span>

@@ -30,12 +30,6 @@ export default function FinalCTA() {
                 referrerPolicy="no-referrer"
               />
             </div>
-
-            {/* Online glow element */}
-            <div className="absolute right-4 bottom-4 bg-[#4ade80] text-brand-text font-mono text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-brand-bg-dark shadow">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span>СЕЙЧАС В СЕТИ</span>
-            </div>
           </div>
 
           {/* Right panel: text contents & action choices */}
@@ -47,7 +41,7 @@ export default function FinalCTA() {
                 <span className="text-xs uppercase font-mono tracking-widest font-semibold">Ваш хозяин Сергей</span>
               </div>
               <h2 className="font-serif italic font-normal text-3xl sm:text-5xl text-white leading-tight tracking-tight">
-                Ближайшие выходные ещё свободны
+                Проверить свободные даты
               </h2>
               <p className="text-xs sm:text-sm text-brand-bg/80 leading-relaxed font-light max-w-xl">
                 Напишите мне в мессенджер — с радостью подберу свободные даты, помогу рассчитать персональную скидку на длительный заезд и отвечу на любые вопросы. Почти всегда отвечаю в течение получаса!
