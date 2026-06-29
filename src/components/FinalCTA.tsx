@@ -1,6 +1,7 @@
 import { Send, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import ContactPopover from './ContactPopover';
+import sergeyPhoto from '../assets/images/sergey.png';
 
 export default function FinalCTA() {
   return (
@@ -21,8 +22,13 @@ export default function FinalCTA() {
             {/* Interactive border decorative box */}
             <div className="absolute inset-x-3 inset-y-3 border border-brand-sand/30 rounded-full scale-[1.08] pointer-events-none" />
 
-            <div className="w-full aspect-square rounded-full shadow-2xl relative border-2 border-brand-sand/40 bg-brand-bg flex items-center justify-center">
-              <span className="font-serif italic text-5xl text-brand-sand select-none">С</span>
+            <div className="w-full aspect-square rounded-full shadow-2xl relative border-2 border-brand-sand/40 bg-brand-bg overflow-hidden">
+              <img
+                src={sergeyPhoto}
+                alt="Сергей, хозяин домика «Репка»"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
 
             {/* Online glow element */}
@@ -78,7 +84,7 @@ export default function FinalCTA() {
               <span className="font-mono text-[10px] tracking-widest text-brand-sand">ТАКЖЕ СДАЕМ НА:</span>
               
               <a
-                href="https://www.avito.ru"
+                href="https://www.avito.ru/zaprudnya/doma_dachi_kottedzhi/dom_48_m_7926314037?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller&guestsDetailed=%7B%22version%22%3A1%2C%22totalCount%22%3A2%2C%22adultsCount%22%3A2%2C%22children%22%3A%5B%5D%7D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors flex items-center gap-1"
@@ -86,16 +92,28 @@ export default function FinalCTA() {
                 <span>Avito</span>
                 <ArrowUpRight size={12} className="opacity-70" />
               </a>
-              
+
               <span className="opacity-20">|</span>
 
               <a
-                href="https://sutochno.ru"
+                href="https://sutochno.ru/front/searchapp/detail/1840600?host_id=14014121&host_device=app&guest_id="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors flex items-center gap-1"
               >
                 <span>Суточно.ру</span>
+                <ArrowUpRight size={12} className="opacity-70" />
+              </a>
+
+              <span className="opacity-20">|</span>
+
+              <a
+                href="https://www.cian.ru/rent/suburban/325890116/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors flex items-center gap-1"
+              >
+                <span>Циан</span>
                 <ArrowUpRight size={12} className="opacity-70" />
               </a>
             </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, HelpCircle, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink } from 'lucide-react';
+import { Calendar, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import ContactPopover from './ContactPopover';
 
@@ -18,6 +18,7 @@ export default function BookingCalculator() {
   
   // Extra services
   const [banyaEnabled, setBanyaEnabled] = useState(false);
+  const [banyaOnly, setBanyaOnly] = useState(false);
   const [banyaHours, setBanyaHours] = useState(3);
   
   const [bikesCount, setBikesCount] = useState(0);
@@ -35,9 +36,9 @@ export default function BookingCalculator() {
   // Pricing constants (Russian Rubles)
   const RATE_WEEKDAY = 8000;
   const RATE_WEEKEND = 10000;
-  const CLEANING_FEE = 1500;
   const BASE_DEPOSIT = 5000;
   const PETS_DEPOSIT = 10000;
+  const BANYA_WITH_HOUSE_FLAT = 6000;
   const BANYA_HOURLY = 1500;
   const BIKE_DAILY = 1500;
   const SUP_DAILY = 800;
@@ -55,7 +56,7 @@ export default function BookingCalculator() {
     const differenceMs = end.getTime() - start.getTime();
     const nights = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
 
-    if (nights < 2) {
+    if (!banyaOnly && nights < 2) {
       setValidationError('Минимальный срок аренды домика — 2 ночи.');
       setNightsCount(nights);
       return;
@@ -82,17 +83,16 @@ export default function BookingCalculator() {
 
     setWeekdaysCount(weekdays);
     setWeekendsCount(weekends);
-  }, [checkIn, checkOut]);
+  }, [checkIn, checkOut, banyaOnly]);
 
   // Calculations
   const rentTotal = (weekdaysCount * RATE_WEEKDAY) + (weekendsCount * RATE_WEEKEND);
-  const banyaTotal = banyaEnabled ? banyaHours * BANYA_HOURLY : 0;
+  const banyaTotal = !banyaEnabled ? 0 : (banyaOnly ? banyaHours * BANYA_HOURLY : BANYA_WITH_HOUSE_FLAT);
   const bikesTotal = bikesCount * bikesDays * BIKE_DAILY;
   const supsTotal = supsCount * supsDays * SUP_DAILY;
-  
-  const servicesTotal = rentTotal + CLEANING_FEE + banyaTotal + bikesTotal + supsTotal;
+
+  const grandTotal = (banyaOnly ? 0 : rentTotal) + banyaTotal + bikesTotal + supsTotal;
   const refundDeposit = hasPets ? PETS_DEPOSIT : BASE_DEPOSIT;
-  const grandTotal = servicesTotal; // Deposit is separate and refundable
 
   // Format Helper
   const formatRubles = (amount: number) => {
@@ -109,11 +109,21 @@ export default function BookingCalculator() {
       return dateStr;
     };
 
+    if (banyaOnly) {
+      const text = `Здравствуйте, Сергей! Хочу заказать только баню, без домика.
+Дата: ${formatDateRussian(checkIn)}
+Длительность: ${banyaHours} ч.
+Количество гостей: ${guests} человек
+Итоговая стоимость: ${formatRubles(grandTotal)}
+(Залог ${formatRubles(refundDeposit)} возвращается по выезду)`;
+      return text;
+    }
+
     const extrasList: string[] = [];
-    if (banyaEnabled) extrasList.push(`Баня (${banyaHours} ч)`);
+    if (banyaEnabled) extrasList.push(`Баня вместе с домиком (фикс. ${formatRubles(BANYA_WITH_HOUSE_FLAT)})`);
     if (bikesCount > 0) extrasList.push(`Велосипеды (${bikesCount} шт, ${bikesDays} дн)`);
     if (supsCount > 0) extrasList.push(`SUP-борды (${supsCount} шт, ${supsDays} дн)`);
-    
+
     const extrasText = extrasList.length > 0 ? `\nДоп. услуги: ${extrasList.join(', ')}` : '';
     const petsText = hasPets ? '\nС животными: Да' : '';
 
@@ -151,8 +161,8 @@ export default function BookingCalculator() {
         <div className="max-w-4xl mx-auto p-4 sm:p-6 mb-12 rounded bg-brand-bg-white border-2 border-brand-accent/30 text-center flex flex-col md:flex-row items-center justify-center gap-4">
           <span className="text-xs font-mono uppercase bg-brand-accent text-white py-1 px-3 rounded text-center font-bold">ОФФЕР ВЫХОДНОГО</span>
           <p className="text-sm sm:text-base text-brand-text leading-relaxed font-light m-0">
-            <strong>Двухдневные выходные на двоих</strong> пт–вс обходятся всего в <strong>21 500 ₽</strong> <br className="hidden md:inline" />
-            (включает 2 ночи проживания, уборку и полноценную з-часовую топку бани)
+            <strong>Двухдневные выходные на двоих</strong> пт–вс с баней обходятся всего в <strong>26 000 ₽</strong> <br className="hidden md:inline" />
+            (включает 2 ночи проживания и дровяную баню вместе с домиком)
           </p>
         </div>
 
@@ -253,44 +263,59 @@ export default function BookingCalculator() {
               </h4>
 
               {/* Banya Option */}
-              <div className="p-4 rounded border border-brand-sand/30 bg-brand-bg-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <label className="flex gap-3.5 items-start cursor-pointer select-none">
-                  <input
-                    id="checkbox-banya"
-                    type="checkbox"
-                    checked={banyaEnabled}
-                    onChange={(e) => setBanyaEnabled(e.target.checked)}
-                    className="w-4 h-4 rounded mt-1 border-brand-sand-hover cursor-pointer accent-brand-accent"
-                  />
-                  <div className="text-left">
-                    <span className="text-sm font-semibold text-brand-text flex items-center gap-1.5">
-                      <Flame size={15} className="text-brand-accent" />
-                      Дровяная баня (+1 500 ₽/час)
-                    </span>
-                    <span className="text-[11px] text-brand-text-mid leading-tight block font-light">
-                      Дровяная печь, запаренный чайник, простыни для парения. Минимум 3 часа.
-                    </span>
-                  </div>
-                </label>
+              <div className="p-4 rounded border border-brand-sand/30 bg-brand-bg-white flex flex-col gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <label className="flex gap-3.5 items-start cursor-pointer select-none">
+                    <input
+                      id="checkbox-banya"
+                      type="checkbox"
+                      checked={banyaEnabled}
+                      onChange={(e) => setBanyaEnabled(e.target.checked)}
+                      className="w-4 h-4 rounded mt-1 border-brand-sand-hover cursor-pointer accent-brand-accent"
+                    />
+                    <div className="text-left">
+                      <span className="text-sm font-semibold text-brand-text flex items-center gap-1.5">
+                        <Flame size={15} className="text-brand-accent" />
+                        Дровяная баня {banyaOnly ? '(1 500 ₽/час)' : '(+6 000 ₽ вместе с домиком)'}
+                      </span>
+                      <span className="text-[11px] text-brand-text-mid leading-tight block font-light">
+                        Дровяная печь, запаренный чайник, простыни для парения{banyaOnly ? '. Минимум 3 часа.' : '.'}
+                      </span>
+                    </div>
+                  </label>
+
+                  {banyaEnabled && banyaOnly && (
+                    <div className="flex items-center gap-2 self-start sm:self-center shrink-0">
+                      <button
+                        onClick={() => setBanyaHours(prev => Math.max(3, prev - 1))}
+                        className="w-8 h-8 rounded-full border border-brand-sand/40 text-brand-text-mid hover:text-brand-accent hover:border-brand-accent font-mono transition-colors text-center font-bold"
+                      >
+                        -
+                      </button>
+                      <span className="text-xs font-mono font-bold w-12 text-center text-brand-text">
+                        {banyaHours} ч.
+                      </span>
+                      <button
+                        onClick={() => setBanyaHours(prev => Math.min(8, prev + 1))}
+                        className="w-8 h-8 rounded-full border border-brand-sand/40 text-brand-text-mid hover:text-brand-accent hover:border-brand-accent font-mono transition-colors text-center font-bold"
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
+                </div>
 
                 {banyaEnabled && (
-                  <div className="flex items-center gap-2 self-start sm:self-center shrink-0">
-                    <button
-                      onClick={() => setBanyaHours(prev => Math.max(3, prev - 1))}
-                      className="w-8 h-8 rounded-full border border-brand-sand/40 text-brand-text-mid hover:text-brand-accent hover:border-brand-accent font-mono transition-colors text-center font-bold"
-                    >
-                      -
-                    </button>
-                    <span className="text-xs font-mono font-bold w-12 text-center text-brand-text">
-                      {banyaHours} ч.
-                    </span>
-                    <button
-                      onClick={() => setBanyaHours(prev => Math.min(8, prev + 1))}
-                      className="w-8 h-8 rounded-full border border-brand-sand/40 text-brand-text-mid hover:text-brand-accent hover:border-brand-accent font-mono transition-colors text-center font-bold"
-                    >
-                      +
-                    </button>
-                  </div>
+                  <label className="flex items-center gap-2.5 pt-3 border-t border-brand-sand/20 cursor-pointer select-none">
+                    <input
+                      id="checkbox-banya-only"
+                      type="checkbox"
+                      checked={banyaOnly}
+                      onChange={(e) => setBanyaOnly(e.target.checked)}
+                      className="w-4 h-4 rounded border-brand-sand-hover cursor-pointer accent-brand-accent"
+                    />
+                    <span className="text-xs text-brand-text-mid">Хочу только баню, без аренды домика</span>
+                  </label>
                 )}
               </div>
 
@@ -337,7 +362,7 @@ export default function BookingCalculator() {
                       id="bikes-days-slider"
                       type="range"
                       min={1}
-                      max={nightsCount}
+                      max={Math.max(nightsCount, 1)}
                       value={bikesDays}
                       onChange={(e) => setBikesDays(parseInt(e.target.value))}
                       className="flex-1 h-1 bg-brand-bg rounded cursor-pointer accent-brand-accent"
@@ -392,7 +417,7 @@ export default function BookingCalculator() {
                       id="sups-days-slider"
                       type="range"
                       min={1}
-                      max={nightsCount}
+                      max={Math.max(nightsCount, 1)}
                       value={supsDays}
                       onChange={(e) => setSupsDays(parseInt(e.target.value))}
                       className="flex-1 h-1 bg-brand-bg rounded cursor-pointer accent-brand-accent"
@@ -423,49 +448,41 @@ export default function BookingCalculator() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  
-                  {/* Rent block */}
-                  <div className="border-b border-white/10 pb-4">
-                    <div className="flex justify-between text-sm mb-1.5 font-medium">
-                      <span>Аренда домика ({nightsCount} ноч.):</span>
-                      <span>{formatRubles(rentTotal)}</span>
-                    </div>
-                    {weekdaysCount > 0 && (
-                      <div className="flex justify-between text-xs text-brand-bg/60">
-                        <span>● Будни ({weekdaysCount} ноч. × {formatRubles(RATE_WEEKDAY)}):</span>
-                        <span>{formatRubles(weekdaysCount * RATE_WEEKDAY)}</span>
-                      </div>
-                    )}
-                    {weekendsCount > 0 && (
-                      <div className="flex justify-between text-xs text-brand-bg/60 mt-1">
-                        <span>● Выходные ({weekendsCount} ноч. × {formatRubles(RATE_WEEKEND)}):</span>
-                        <span>{formatRubles(weekendsCount * RATE_WEEKEND)}</span>
-                      </div>
-                    )}
-                  </div>
 
-                  {/* Mandatories: Cleaning fee */}
-                  <div className="flex justify-between text-xs sm:text-sm border-b border-white/10 pb-4">
-                    <div className="flex items-center gap-1">
-                      <span>Финальная уборка (разово):</span>
-                      <div className="group relative">
-                        <HelpCircle size={13} className="text-brand-sand cursor-help opacity-70" />
-                        <span className="absolute left-1/2 transform -translate-x-1/2 bottom-5 bg-brand-text text-white text-[10px] py-1 px-2 rounded-md hidden group-hover:block whitespace-nowrap z-50">
-                          Фиксированная плата за качественную уборку
-                        </span>
+                  {/* Rent block */}
+                  {!banyaOnly && (
+                    <div className="border-b border-white/10 pb-4">
+                      <div className="flex justify-between text-sm mb-1.5 font-medium">
+                        <span>Аренда домика ({nightsCount} ноч.):</span>
+                        <span>{formatRubles(rentTotal)}</span>
                       </div>
+                      {weekdaysCount > 0 && (
+                        <div className="flex justify-between text-xs text-brand-bg/60">
+                          <span>● Будни ({weekdaysCount} ноч. × {formatRubles(RATE_WEEKDAY)}):</span>
+                          <span>{formatRubles(weekdaysCount * RATE_WEEKDAY)}</span>
+                        </div>
+                      )}
+                      {weekendsCount > 0 && (
+                        <div className="flex justify-between text-xs text-brand-bg/60 mt-1">
+                          <span>● Выходные ({weekendsCount} ноч. × {formatRubles(RATE_WEEKEND)}):</span>
+                          <span>{formatRubles(weekendsCount * RATE_WEEKEND)}</span>
+                        </div>
+                      )}
                     </div>
-                    <span>{formatRubles(CLEANING_FEE)}</span>
-                  </div>
+                  )}
 
                   {/* Extra listings */}
                   {(banyaEnabled || bikesCount > 0 || supsCount > 0) && (
                     <div className="border-b border-white/10 pb-4 space-y-2">
                       <span className="text-[10px] font-mono tracking-wider text-brand-sand block">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</span>
-                      
+
                       {banyaEnabled && (
                         <div className="flex justify-between text-xs text-brand-bg/90">
-                          <span>Дровяная баня ({banyaHours} ч. × {formatRubles(BANYA_HOURLY)}):</span>
+                          <span>
+                            {banyaOnly
+                              ? `Дровяная баня (${banyaHours} ч. × ${formatRubles(BANYA_HOURLY)}):`
+                              : 'Дровяная баня (вместе с домиком, фикс.):'}
+                          </span>
                           <span>{formatRubles(banyaTotal)}</span>
                         </div>
                       )}
@@ -521,7 +538,7 @@ export default function BookingCalculator() {
                           className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide"
                         >
                           <Send size={15} className="fill-current" />
-                          <span>Забронировать у хозяина</span>
+                          <span>Запросить даты у хозяина</span>
                         </button>
                       )}
                     </ContactPopover>
@@ -539,10 +556,10 @@ export default function BookingCalculator() {
               <span className="text-[10px] font-mono tracking-widest text-brand-text-mid block font-bold mb-4">
                 ДРУГИЕ ПЛАТФОРМЫ БРОНИРОВАНИЯ
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <a
                   id="avito-booking-channel"
-                  href="https://www.avito.ru" // Avito search fallback channel
+                  href="https://www.avito.ru/zaprudnya/doma_dachi_kottedzhi/dom_48_m_7926314037?utm_campaign=native&utm_medium=item_page_android&utm_source=soc_sharing_seller&guestsDetailed=%7B%22version%22%3A1%2C%22totalCount%22%3A2%2C%22adultsCount%22%3A2%2C%22children%22%3A%5B%5D%7D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 rounded border border-brand-sand/50 text-brand-text hover:border-brand-accent hover:text-brand-accent text-xs font-semibold text-center transition-colors flex items-center justify-center gap-1.5"
@@ -553,7 +570,7 @@ export default function BookingCalculator() {
 
                 <a
                   id="sutochno-booking-channel"
-                  href="https://sutochno.ru" // Sutochno search fallback channel
+                  href="https://sutochno.ru/front/searchapp/detail/1840600?host_id=14014121&host_device=app&guest_id="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 rounded border border-brand-sand/50 text-brand-text hover:border-brand-accent hover:text-brand-accent text-xs font-semibold text-center transition-colors flex items-center justify-center gap-1.5"
@@ -561,9 +578,20 @@ export default function BookingCalculator() {
                   <span>Забронировать на Суточно.ру</span>
                   <ExternalLink size={13} />
                 </a>
+
+                <a
+                  id="cian-booking-channel"
+                  href="https://www.cian.ru/rent/suburban/325890116/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3.5 rounded border border-brand-sand/50 text-brand-text hover:border-brand-accent hover:text-brand-accent text-xs font-semibold text-center transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <span>Посмотреть на Циан</span>
+                  <ExternalLink size={13} />
+                </a>
               </div>
               <span className="text-[10px] text-brand-text-mid/70 block text-center mt-3 text-left leading-normal">
-                ✓ На Авито и Суточно.ру у нас подтвержденный профиль с оценкой ★5.0. Выбирайте привычный для вас способ бронирования.
+                ✓ На Авито, Циан и Суточно.ру у нас подтвержденный профиль с оценкой ★5.0. Выбирайте привычный для вас способ бронирования.
               </span>
             </div>
 

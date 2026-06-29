@@ -95,7 +95,7 @@ export default function Reviews() {
         <div className="mt-12 text-center">
           <a
             id="more-reviews-external-cta"
-            href="https://www.avito.ru" // Search fallback to check listings
+            href="https://www.avito.ru/zaprudnya/doma_dachi_kottedzhi/dom_48_m_7926314037"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-brand-accent hover:text-brand-accent-hover transition-colors font-mono tracking-wider border-b border-brand-accent/40 pb-0.5"

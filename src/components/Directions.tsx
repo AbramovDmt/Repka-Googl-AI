@@ -15,9 +15,9 @@ export default function Directions() {
   const nearbyItems = [
     { name: 'Канал им. Москвы', desc: '4 минуты пешком', distance: '300 м', icon: '🌊' },
     { name: 'Продуктовый магазин', desc: '5 минут на авто', distance: '3 км', icon: '🛒' },
-    { name: 'Курорты Яхромы', desc: 'Склоны, тюбинг', distance: '15 минут', icon: '⛷' },
-    { name: 'Дмитровский кремль', desc: 'Прогулки, история', distance: '20 минут', icon: '🏰' },
-    { name: 'Страусиная ферма', desc: 'Экскурсии с детьми', distance: '20 минут', icon: '🦤' },
+    { name: 'Курорты Яхромы', desc: 'Склоны, тюбинг', distance: '~42 минуты', icon: '⛷' },
+    { name: 'Дмитровский кремль', desc: 'Прогулки, история', distance: '~42 минуты', icon: '🏰' },
+    { name: 'Страусиная ферма', desc: 'Экскурсии с детьми', distance: '~50 минут', icon: '🦤' },
   ];
 
   return (
@@ -133,7 +133,7 @@ export default function Directions() {
             {/* Embedded Yandex Map Frame */}
             <div className="w-full h-80 lg:h-full relative min-h-[300px] flex-1">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?um=constructor%3Af72bd2fc2adba790fe428bb8c983d59648939c362cb23f1bd0fb4d01b1cb6a3a&amp;source=constructor"
+                src="https://yandex.ru/map-widget/v1/?ll=37.42054%2C56.48085&z=16&pt=37.42054,56.48085,pm2rdl"
                 width="100%"
                 height="100%"
                 frameBorder="0"
@@ -145,10 +145,10 @@ export default function Directions() {
             
             {/* Map metadata action banner */}
             <div className="bg-white/5 p-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-brand-bg/85">
-              <span>Координаты: 56.467468, 37.381156</span>
+              <span>Координаты: 56.48085, 37.42054</span>
               <a
                 id="maps-navigation-link"
-                href="https://yandex.ru/maps/?rtext=~56.467468,37.381156"
+                href="https://yandex.ru/maps/?rtext=~56.48085,37.42054"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-sand hover:text-white transition-colors flex items-center gap-1 font-medium font-mono"

@@ -62,11 +62,11 @@ export default function Header() {
             }}
             className="flex items-center gap-2 group"
           >
-            <span className="font-serif italic font-bold text-2xl tracking-tight relative">
+            <span className="font-serif italic font-bold text-2xl leading-none tracking-tight relative">
               Репка
               <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled ? 'bg-brand-accent' : 'bg-white'}`}></span>
             </span>
-            <span className={`text-xs uppercase tracking-widest font-mono border px-1.5 py-0.5 rounded ${scrolled ? 'border-brand-green/30 text-brand-green' : 'border-white/30 text-white/80'}`}>
+            <span className={`text-xs leading-none uppercase tracking-widest font-mono border px-1.5 py-1 rounded flex items-center ${scrolled ? 'border-brand-green/30 text-brand-green' : 'border-white/30 text-white/80'}`}>
               Дом в роще
             </span>
           </a>
