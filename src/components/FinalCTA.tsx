@@ -1,10 +1,8 @@
-import { Send, Phone, ArrowUpRight, MessageCircle } from 'lucide-react';
+import { Send, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
-
+import ContactPopover from './ContactPopover';
 
 export default function FinalCTA() {
-  const telegramPrefilledLink = 'https://t.me/abramovdmt?text=Здравствуйте%2C%20Сергей!%20Хочу%20уточнить%20свободные%20даты%20для%20заезда%20в%20домик%20Репка.';
-
   return (
     <section
       id="final-cta"
@@ -52,20 +50,22 @@ export default function FinalCTA() {
 
             {/* Direct primary action items */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <a
-                id="final-cta-tg-link"
-                href={telegramPrefilledLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand-accent hover:bg-brand-accent-hover text-white py-4 px-8 rounded font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px]"
-              >
-                <Send size={15} className="fill-current" />
-                <span>Написать в Telegram</span>
-              </a>
+              <ContactPopover telegramText="Здравствуйте, Сергей! Хочу уточнить свободные даты для заезда в домик Репка.">
+                {({ onClick }) => (
+                  <button
+                    id="final-cta-tg-link"
+                    onClick={onClick}
+                    className="bg-brand-accent hover:bg-brand-accent-hover text-white py-4 px-8 rounded font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px]"
+                  >
+                    <Send size={15} className="fill-current" />
+                    <span>Написать хозяину</span>
+                  </button>
+                )}
+              </ContactPopover>
 
               <a
                 id="final-cta-tel-link"
-                href="tel:+79261234567" // Sergei default phone mock
+                href="tel:+79151347999"
                 className="border border-white/20 bg-white/5 hover:bg-white/10 text-white py-4 px-8 rounded font-semibold text-sm flex items-center justify-center gap-3 transition-all cursor-pointer hover:translate-y-[-2px]"
               >
                 <Phone size={15} />

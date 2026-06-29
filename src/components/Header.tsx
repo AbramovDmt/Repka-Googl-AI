@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Send, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import ContactPopover from './ContactPopover';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -66,7 +67,7 @@ export default function Header() {
               <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled ? 'bg-brand-accent' : 'bg-white'}`}></span>
             </span>
             <span className={`text-xs uppercase tracking-widest font-mono border px-1.5 py-0.5 rounded ${scrolled ? 'border-brand-green/30 text-brand-green' : 'border-white/30 text-white/80'}`}>
-              A-Frame
+              Дом в роще
             </span>
           </a>
 
@@ -95,20 +96,22 @@ export default function Header() {
               className="hidden"
               aria-hidden="true"
             />
-            <a
-              id="header-cta-tg"
-              href="https://t.me/abramovdmt?text=Здравствуйте!%20Хочу%20забронировать%20домик%20Репка.%20Подскажите%20свободные%20даты."
-              className={`flex items-center gap-2 text-sm font-medium py-2.5 px-5 rounded-md transition-all duration-300 ${
-                scrolled
-                  ? 'bg-brand-accent text-white hover:bg-brand-accent-hover shadow-sm'
-                  : 'bg-white/15 backdrop-blur-md text-white border border-white/20 hover:bg-white hover:text-brand-text'
-              }`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Send size={15} className="fill-current" />
-              <span>Написать Сергею</span>
-            </a>
+            <ContactPopover align="right" telegramText="Здравствуйте! Хочу забронировать домик Репка. Подскажите свободные даты.">
+              {({ onClick }) => (
+                <button
+                  id="header-cta-tg"
+                  onClick={onClick}
+                  className={`flex items-center gap-2 text-sm font-medium py-2.5 px-5 rounded-md transition-all duration-300 ${
+                    scrolled
+                      ? 'bg-brand-accent text-white hover:bg-brand-accent-hover shadow-sm'
+                      : 'bg-white/15 backdrop-blur-md text-white border border-white/20 hover:bg-white hover:text-brand-text'
+                  }`}
+                >
+                  <Send size={15} className="fill-current" />
+                  <span>Написать Сергею</span>
+                </button>
+              )}
+            </ContactPopover>
           </div>
 
           {/* Mobile Menu Button */}
@@ -184,23 +187,25 @@ export default function Header() {
               <div className="flex flex-col gap-4 mt-auto pt-8 border-t border-brand-sand/30">
                 <a
                   id="drawer-tel-link"
-                  href="tel:+79261234567" // Placeholder Sergei phone
+                  href="tel:+79151347999"
                   className="flex items-center gap-3 text-brand-text hover:text-brand-accent transition-colors py-2 text-sm font-medium"
                 >
                   <Phone size={16} className="text-brand-green" />
                   <span>Позвонить Сергею</span>
                 </a>
 
-                <a
-                  id="drawer-tg-cta"
-                  href="https://t.me/abramovdmt?text=Здравствуйте!%20Хочу%20забронировать%20домик%20Репка."
-                  className="flex items-center justify-center gap-2 bg-brand-accent text-white text-center py-3.5 px-5 rounded-md hover:bg-brand-accent-hover transition-colors font-semibold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Send size={15} className="fill-current" />
-                  <span>Написать в Telegram</span>
-                </a>
+                <ContactPopover align="center" telegramText="Здравствуйте! Хочу забронировать домик Репка.">
+                  {({ onClick }) => (
+                    <button
+                      id="drawer-tg-cta"
+                      onClick={onClick}
+                      className="w-full flex items-center justify-center gap-2 bg-brand-accent text-white text-center py-3.5 px-5 rounded-md hover:bg-brand-accent-hover transition-colors font-semibold"
+                    >
+                      <Send size={15} className="fill-current" />
+                      <span>Написать хозяину</span>
+                    </button>
+                  )}
+                </ContactPopover>
               </div>
             </motion.div>
           </>

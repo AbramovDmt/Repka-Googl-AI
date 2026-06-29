@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Calendar, HelpCircle, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
+import ContactPopover from './ContactPopover';
 
 export default function BookingCalculator() {
   // Setup default dates: checkin = tomorrow, checkout = in 2 days (minimum 2 nights)
@@ -122,10 +123,8 @@ export default function BookingCalculator() {
 Итоговая стоимость проживания: ${formatRubles(grandTotal)}
 (Залог ${formatRubles(refundDeposit)} возвращается по выезду)`;
 
-    return encodeURIComponent(text);
+    return text;
   };
-
-  const telegramLink = `https://t.me/abramovdmt?text=${getPrefilledMessage()}`;
 
   return (
     <section
@@ -514,18 +513,20 @@ export default function BookingCalculator() {
 
                   {/* Direct prefilled Telegram Book Link Action */}
                   <div className="pt-6">
-                    <a
-                      id="calculator-book-tg-cta"
-                      href={telegramLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide"
-                    >
-                      <Send size={15} className="fill-current" />
-                      <span>Забронировать в Telegram</span>
-                    </a>
+                    <ContactPopover align="center" className="block w-full" telegramText={getPrefilledMessage()}>
+                      {({ onClick }) => (
+                        <button
+                          id="calculator-book-tg-cta"
+                          onClick={onClick}
+                          className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide"
+                        >
+                          <Send size={15} className="fill-current" />
+                          <span>Забронировать у хозяина</span>
+                        </button>
+                      )}
+                    </ContactPopover>
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
-                      Кнопка откроет диалог с Сергеем со сформированной сметой
+                      Telegram откроет диалог со сформированной сметой
                     </span>
                   </div>
 

@@ -1,4 +1,5 @@
 import { Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import { MAX_LINK } from '../lib/contacts';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -80,8 +81,8 @@ export default function Footer() {
 
             <div className="flex gap-2.5 items-center">
               <Phone size={14} className="text-brand-accent shrink-0" />
-              <a href="tel:+79261234567" className="hover:text-white transition-colors font-medium">
-                +7 (926) 123-45-67
+              <a href="tel:+79151347999" className="hover:text-white transition-colors font-medium">
+                +7 (915) 134-79-99
               </a>
             </div>
 
@@ -94,6 +95,18 @@ export default function Footer() {
                 className="hover:text-white transition-colors font-medium"
               >
                 Telegram: @abramovdmt
+              </a>
+            </div>
+
+            <div className="flex gap-2.5 items-center">
+              <MessageCircle size={14} className="text-brand-accent shrink-0" />
+              <a
+                href={MAX_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors font-medium"
+              >
+                MAX
               </a>
             </div>
 

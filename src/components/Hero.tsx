@@ -1,6 +1,7 @@
 import { ArrowDown, Send, Image } from 'lucide-react';
 import { motion } from 'motion/react';
 import heroImage from '../assets/images/hero.png';
+import ContactPopover from './ContactPopover';
 
 const HERO_IMAGE_PATH = heroImage;
 
@@ -9,14 +10,6 @@ interface HeroProps {
 }
 
 export default function Hero({ onGalleryClick }: HeroProps) {
-  const handleContactClick = () => {
-    window.open(
-      'https://t.me/abramovdmt?text=Здравствуйте!%20Хочу%20забронировать%20домик%20Репка.%20Подскажите%20свободные%20даты.',
-      '_blank',
-      'noopener,noreferrer'
-    );
-  };
-
   return (
     <div
       id="hero-section"
@@ -55,7 +48,7 @@ export default function Hero({ onGalleryClick }: HeroProps) {
           transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
           className="font-serif italic font-normal text-4xl sm:text-6xl md:text-7xl leading-[1.1] mb-6 tracking-tight max-w-3xl"
         >
-          Два дня в берёзовой роще
+          Выдохнуть в берёзовой роще
         </motion.h1>
 
         {/* Subhead details list */}
@@ -75,15 +68,19 @@ export default function Hero({ onGalleryClick }: HeroProps) {
           transition={{ duration: 1.2, delay: 0.6, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
         >
-          <button
-            id="hero-primary-cta"
-            onClick={handleContactClick}
-            className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-bg-white text-base font-medium py-4 px-8 rounded transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:translate-y-[-2px]"
-          >
-            <Send size={16} className="fill-current" />
-            <span>Написать хозяину</span>
-          </button>
-          
+          <ContactPopover telegramText="Здравствуйте! Хочу забронировать домик Репка. Подскажите свободные даты.">
+            {({ onClick }) => (
+              <button
+                id="hero-primary-cta"
+                onClick={onClick}
+                className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-bg-white text-base font-medium py-4 px-8 rounded transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:translate-y-[-2px]"
+              >
+                <Send size={16} className="fill-current" />
+                <span>Написать хозяину</span>
+              </button>
+            )}
+          </ContactPopover>
+
           <button
             id="hero-secondary-cta"
             onClick={onGalleryClick}

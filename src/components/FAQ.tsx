@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
 import { faqList } from '../data';
 import { FAQItem } from '../types';
+import ContactPopover from './ContactPopover';
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>('f1'); // Open first item by default for great UX
@@ -86,15 +87,17 @@ export default function FAQ() {
             </div>
           </div>
           
-          <a
-            id="faq-direct-ask-tg"
-            href="https://t.me/abramovdmt?text=Здравствуйте!%20У%20меня%20есть%20индивидуальный%20вопрос%20по%20поводу%20бронирования%20домика%20Репка."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto text-xs font-semibold py-3 px-6 rounded border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-all text-center whitespace-nowrap cursor-pointer shrink-0"
-          >
-            Спросить в Telegram
-          </a>
+          <ContactPopover align="right" telegramText="Здравствуйте! У меня есть индивидуальный вопрос по поводу бронирования домика Репка.">
+            {({ onClick }) => (
+              <button
+                id="faq-direct-ask-tg"
+                onClick={onClick}
+                className="w-full sm:w-auto text-xs font-semibold py-3 px-6 rounded border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-all text-center whitespace-nowrap cursor-pointer shrink-0"
+              >
+                Спросить хозяина
+              </button>
+            )}
+          </ContactPopover>
         </div>
 
       </div>
