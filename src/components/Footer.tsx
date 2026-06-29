@@ -23,10 +23,10 @@ export default function Footer() {
       id="app-footer"
       className="bg-brand-bg-dark text-brand-bg-white py-16 border-t border-white/5 bg-grain"
     >
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-start text-left">
-        
-        {/* Col 1: Brand Wordmark (4 cols) */}
-        <div className="md:col-span-4 space-y-4">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 items-start text-left">
+
+        {/* Col 1: Brand Wordmark (3 of 12 cols on desktop, full width on tablet) */}
+        <div className="sm:col-span-2 lg:col-span-3 space-y-4 min-w-0">
           <div className="flex items-center gap-2">
             <span className="font-serif italic font-bold text-3xl leading-none tracking-tight text-white select-none">
               Репка
@@ -45,8 +45,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Col 2: Navigation Links (3 cols) */}
-        <div className="md:col-span-3 space-y-4">
+        {/* Col 2: Navigation Links (3 of 12 cols) */}
+        <div className="lg:col-span-3 space-y-4 min-w-0">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">НАВИГАЦИЯ</span>
           <ul className="space-y-2.5 text-xs sm:text-sm font-medium">
             {[
@@ -73,8 +73,8 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Col 3: Direct Address & Contacts details (2.5 cols) */}
-        <div className="md:col-span-2.5 space-y-4 text-left">
+        {/* Col 3: Direct Address & Contacts details (3 of 12 cols) */}
+        <div className="lg:col-span-3 space-y-4 text-left min-w-0">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">КОНТАКТЫ И АДРЕС</span>
           <div className="space-y-3.5 text-xs sm:text-sm text-brand-bg/85 font-light leading-relaxed">
             
@@ -119,19 +119,19 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Col 4: Emergencies contact box (2.5 cols) */}
-        <div className="md:col-span-2.5 space-y-4">
+        {/* Col 4: Emergencies contact box (3 of 12 cols) */}
+        <div className="lg:col-span-3 space-y-4 min-w-0">
           <span className="text-xs font-mono font-bold tracking-widest text-brand-sand block">СЛУЖБЫ СПАСЕНИЯ</span>
           <div className="bg-white/5 p-4 rounded border border-white/5 text-xs">
             <div className="grid grid-cols-2 gap-3">
-              <a href="tel:112" className="flex flex-col gap-1.5 group">
+              <a href="tel:112" className="flex flex-col gap-1.5 group min-w-0">
                 <span className="flex items-center gap-1.5 font-light text-brand-bg/70 group-hover:text-white transition-colors">
                   <Siren size={13} className="text-brand-accent shrink-0" />
                   МЧС
                 </span>
                 <span className="font-mono font-bold text-white text-base group-hover:text-brand-accent transition-colors">112</span>
               </a>
-              <a href="tel:103" className="flex flex-col gap-1.5 group">
+              <a href="tel:103" className="flex flex-col gap-1.5 group min-w-0">
                 <span className="flex items-center gap-1.5 font-light text-brand-bg/70 group-hover:text-white transition-colors">
                   <Stethoscope size={13} className="text-brand-accent shrink-0" />
                   Скорая
