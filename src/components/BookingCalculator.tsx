@@ -539,7 +539,12 @@ export default function BookingCalculator() {
                       id="calculator-book-tg-cta"
                       disabled={!!validationError || !checkIn || !checkOut}
                       onClick={() => {
-                        const payload = btoa(JSON.stringify({ checkIn, checkOut, guests }));
+                        const payload = btoa(JSON.stringify({
+                          checkIn, checkOut, guests,
+                          sauna: banyaEnabled && !banyaOnly,
+                          bikesCount,
+                          supsCount,
+                        }));
                         window.open(
                           `https://tg-app-smoky-five.vercel.app?startapp=${payload}`,
                           '_blank',
@@ -552,7 +557,7 @@ export default function BookingCalculator() {
                       <span>Забронировать через Telegram</span>
                     </button>
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
-                      Откроется приложение с уже заполненными датами и гостями
+                      Откроется приложение с уже заполненными датами, гостями и выбранными допами
                     </span>
                   </div>
 
