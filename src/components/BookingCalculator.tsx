@@ -40,7 +40,8 @@ export default function BookingCalculator() {
   const RATE_WEEKEND = 10000;
   const BASE_DEPOSIT = 5000;
   const PETS_DEPOSIT = 10000;
-  const BANYA_WITH_HOUSE_DAILY = 8000;
+  const BANYA_WITH_HOUSE_FIRST = 8000;
+  const BANYA_WITH_HOUSE_EXTRA = 4000;
   const BANYA_HOURLY = 1500;
   const BIKE_DAILY = 1500;
   const SUP_DAILY = 800;
@@ -89,7 +90,10 @@ export default function BookingCalculator() {
 
   // Calculations
   const rentTotal = (weekdaysCount * RATE_WEEKDAY) + (weekendsCount * RATE_WEEKEND);
-  const banyaTotal = !banyaEnabled ? 0 : (banyaOnly ? banyaHours * BANYA_HOURLY : nightsCount * BANYA_WITH_HOUSE_DAILY);
+  const banyaWithHouseTotal = nightsCount > 0
+    ? BANYA_WITH_HOUSE_FIRST + Math.max(0, nightsCount - 1) * BANYA_WITH_HOUSE_EXTRA
+    : 0;
+  const banyaTotal = !banyaEnabled ? 0 : (banyaOnly ? banyaHours * BANYA_HOURLY : banyaWithHouseTotal);
   const bikesTotal = bikesCount * bikesDays * BIKE_DAILY;
   const supsTotal = supsCount * supsDays * SUP_DAILY;
 
@@ -122,7 +126,7 @@ export default function BookingCalculator() {
     }
 
     const extrasList: string[] = [];
-    if (banyaEnabled) extrasList.push(`Баня вместе с домиком (${nightsCount} сутки × ${formatRubles(BANYA_WITH_HOUSE_DAILY)})`);
+    if (banyaEnabled) extrasList.push(`Баня вместе с домиком (${formatRubles(banyaTotal)})`);
     if (bikesCount > 0) extrasList.push(`Велосипеды (${bikesCount} шт, ${bikesDays} дн)`);
     if (supsCount > 0) extrasList.push(`SUP-борды (${supsCount} шт, ${supsDays} дн)`);
 
@@ -163,7 +167,7 @@ export default function BookingCalculator() {
         <div className="max-w-4xl mx-auto p-4 sm:p-6 mb-12 rounded bg-brand-bg-white border-2 border-brand-accent/30 text-center flex flex-col md:flex-row items-center justify-center gap-4">
           <span className="text-xs font-mono uppercase bg-brand-accent text-white py-1 px-3 rounded text-center font-bold">ОФФЕР ВЫХОДНОГО</span>
           <p className="text-sm sm:text-base text-brand-text leading-relaxed font-light m-0">
-            <strong>Двухдневные выходные на двоих</strong> пт–вс с баней обходятся всего в <strong>36 000 ₽</strong> <br className="hidden md:inline" />
+            <strong>Двухдневные выходные на двоих</strong> пт–вс с баней обходятся всего в <strong>32 000 ₽</strong> <br className="hidden md:inline" />
             (включает 2 ночи проживания и дровяную баню вместе с домиком)
           </p>
         </div>
@@ -261,7 +265,7 @@ export default function BookingCalculator() {
                     <div className="text-left">
                       <span className="text-sm font-semibold text-brand-text flex items-center gap-1.5">
                         <Flame size={15} className="text-brand-accent" />
-                        Дровяная баня {banyaOnly ? '(1 500 ₽/час)' : '(+8 000 ₽/сутки вместе с домиком)'}
+                        Дровяная баня {banyaOnly ? '(1 500 ₽/час)' : '(8 000 ₽ первая ночь, 4 000 ₽ далее)'}
                       </span>
                       <span className="text-[11px] text-brand-text-mid leading-tight block font-light">
                         Дровяная печь, запаренный чайник, простыни для парения{banyaOnly ? '. Минимум 3 часа.' : '.'}
@@ -464,13 +468,27 @@ export default function BookingCalculator() {
                       <span className="text-[10px] font-mono tracking-wider text-brand-sand block">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</span>
 
                       {banyaEnabled && (
-                        <div className="flex justify-between text-xs text-brand-bg/90">
-                          <span>
-                            {banyaOnly
-                              ? `Дровяная баня (${banyaHours} ч. × ${formatRubles(BANYA_HOURLY)}):`
-                              : `Дровяная баня (${nightsCount} сутки × ${formatRubles(BANYA_WITH_HOUSE_DAILY)}):`}
-                          </span>
-                          <span>{formatRubles(banyaTotal)}</span>
+                        <div className="space-y-0.5">
+                          <div className="flex justify-between text-xs text-brand-bg/90">
+                            <span>
+                              {banyaOnly
+                                ? `Дровяная баня (${banyaHours} ч. × ${formatRubles(BANYA_HOURLY)}):`
+                                : 'Дровяная баня:'}
+                            </span>
+                            <span>{formatRubles(banyaTotal)}</span>
+                          </div>
+                          {!banyaOnly && nightsCount > 0 && (
+                            <div className="flex justify-between text-xs text-brand-bg/60 pl-2">
+                              <span>● 1-я ночь: {formatRubles(BANYA_WITH_HOUSE_FIRST)}</span>
+                              <span></span>
+                            </div>
+                          )}
+                          {!banyaOnly && nightsCount > 1 && (
+                            <div className="flex justify-between text-xs text-brand-bg/60 pl-2">
+                              <span>● Ещё {nightsCount - 1} ноч. × {formatRubles(BANYA_WITH_HOUSE_EXTRA)}: {formatRubles((nightsCount - 1) * BANYA_WITH_HOUSE_EXTRA)}</span>
+                              <span></span>
+                            </div>
+                          )}
                         </div>
                       )}
                       
