@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Calendar, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
-import ContactPopover from './ContactPopover';
 import AvailabilityCalendar from './AvailabilityCalendar';
 import { useBookedDates } from '../hooks/useBookedDates';
 
@@ -516,22 +515,26 @@ export default function BookingCalculator() {
                     </span>
                   </div>
 
-                  {/* Direct prefilled Telegram Book Link Action */}
+                  {/* Open Telegram Mini App with prefilled booking data */}
                   <div className="pt-6">
-                    <ContactPopover align="center" className="block w-full" telegramText={getPrefilledMessage()}>
-                      {({ onClick }) => (
-                        <button
-                          id="calculator-book-tg-cta"
-                          onClick={onClick}
-                          className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide"
-                        >
-                          <Send size={15} className="fill-current" />
-                          <span>Запросить даты у хозяина</span>
-                        </button>
-                      )}
-                    </ContactPopover>
+                    <button
+                      id="calculator-book-tg-cta"
+                      disabled={!!validationError || !checkIn || !checkOut}
+                      onClick={() => {
+                        const payload = btoa(JSON.stringify({ checkIn, checkOut, guests }));
+                        window.open(
+                          `https://repka-domik.netlify.app?startapp=${payload}`,
+                          '_blank',
+                          'noopener'
+                        );
+                      }}
+                      className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                    >
+                      <Send size={15} className="fill-current" />
+                      <span>Забронировать через Telegram</span>
+                    </button>
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
-                      Telegram откроет диалог со сформированной сметой
+                      Откроется приложение с уже заполненными датами и гостями
                     </span>
                   </div>
 
