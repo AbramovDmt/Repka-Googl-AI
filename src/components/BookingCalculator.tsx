@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Calendar, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import ContactPopover from './ContactPopover';
+import AvailabilityCalendar from './AvailabilityCalendar';
+import { useBookedDates } from '../hooks/useBookedDates';
 
 export default function BookingCalculator() {
   // Setup default dates: checkin = tomorrow, checkout = in 2 days (minimum 2 nights)
@@ -13,6 +15,7 @@ export default function BookingCalculator() {
 
   const [checkIn, setCheckIn] = useState(getFormattedDate(1));
   const [checkOut, setCheckOut] = useState(getFormattedDate(3));
+  const { bookedDates, loading: calendarLoading } = useBookedDates();
   const [guests, setGuests] = useState(2);
   const [hasPets, setHasPets] = useState(false);
   
@@ -178,35 +181,14 @@ export default function BookingCalculator() {
 
             <div className="space-y-6">
               
-              {/* Date Pickers */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="input-checkin" className="text-xs font-mono font-bold uppercase tracking-wider text-brand-text-mid block mb-2 text-left">
-                    ЗАЕЗД (с 16:00)
-                  </label>
-                  <input
-                    id="input-checkin"
-                    type="date"
-                    min={getFormattedDate(0)}
-                    value={checkIn}
-                    onChange={(e) => setCheckIn(e.target.value)}
-                    className="w-full bg-brand-bg border border-brand-sand/40 rounded p-3 text-sm text-brand-text focus:outline-none focus:border-brand-accent transition-colors font-mono cursor-pointer"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="input-checkout" className="text-xs font-mono font-bold uppercase tracking-wider text-brand-text-mid block mb-2 text-left">
-                    ВЫЕЗД (до 12:00)
-                  </label>
-                  <input
-                    id="input-checkout"
-                    type="date"
-                    min={checkIn}
-                    value={checkOut}
-                    onChange={(e) => setCheckOut(e.target.value)}
-                    className="w-full bg-brand-bg border border-brand-sand/40 rounded p-3 text-sm text-brand-text focus:outline-none focus:border-brand-accent transition-colors font-mono cursor-pointer"
-                  />
-                </div>
-              </div>
+              {/* Availability Calendar (replaces plain date inputs) */}
+              <AvailabilityCalendar
+                bookedDates={bookedDates}
+                loading={calendarLoading}
+                checkIn={checkIn}
+                checkOut={checkOut}
+                onChange={(ci, co) => { setCheckIn(ci); setCheckOut(co); }}
+              />
 
               {/* Guests Count && Pets checkbox */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center pt-2">
