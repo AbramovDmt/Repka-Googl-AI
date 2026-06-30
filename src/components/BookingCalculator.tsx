@@ -523,7 +523,7 @@ export default function BookingCalculator() {
                       onClick={() => {
                         const payload = btoa(JSON.stringify({ checkIn, checkOut, guests }));
                         window.open(
-                          `https://repka-domik.netlify.app?startapp=${payload}`,
+                          `https://tg-app-smoky-five.vercel.app?startapp=${payload}`,
                           '_blank',
                           'noopener'
                         );
