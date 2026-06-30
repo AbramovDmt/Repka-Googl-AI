@@ -10,7 +10,7 @@ export default async function handler() {
     return new Response(text, {
       headers: {
         'Content-Type': 'text/calendar; charset=utf-8',
-        'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
+        'Cache-Control': 's-maxage=600, stale-while-revalidate=3600',
         'Access-Control-Allow-Origin': '*',
       },
     });
