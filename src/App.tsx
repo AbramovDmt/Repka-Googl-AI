@@ -14,6 +14,7 @@ import Directions from './components/Directions';
 import BookingCalculator from './components/BookingCalculator';
 import Reviews from './components/Reviews';
 import FAQ from './components/FAQ';
+import HouseRules from './components/HouseRules';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 
@@ -73,7 +74,10 @@ export default function App() {
       {/* 6. Dynamic split-screen Directions map embed, landmarks & copy-gps locator */}
       <Directions />
 
-      {/* 7. Interactive dynamic Pricing Calculator with real-time receipts quoting & TG prefilling links */}
+      {/* 7. House rules — before booking so guests know conditions upfront */}
+      <HouseRules />
+
+      {/* 8. Interactive dynamic Pricing Calculator with real-time receipts quoting & TG prefilling links */}
       <BookingCalculator />
 
       {/* 8. Verified reviews carousel grid with social proofs metrics */}

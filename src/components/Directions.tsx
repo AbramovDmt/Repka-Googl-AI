@@ -14,6 +14,7 @@ export default function Directions() {
 
   const nearbyItems = [
     { name: 'Канал им. Москвы', desc: '4 минуты пешком', distance: '300 м', icon: '🌊' },
+    { name: 'Рыбалка', desc: 'На канале и платных озёрах', distance: 'рядом', icon: '🎣' },
     { name: 'Продуктовый магазин', desc: '5 минут на авто', distance: '3 км', icon: '🛒' },
     { name: 'Курорты Яхромы', desc: 'Склоны, тюбинг', distance: '~42 минуты', icon: '⛷' },
     { name: 'Дмитровский кремль', desc: 'Прогулки, история', distance: '~42 минуты', icon: '🏰' },

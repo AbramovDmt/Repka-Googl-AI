@@ -1,8 +1,7 @@
 import { useRef } from 'react';
-import { ArrowDown, Send, Image } from 'lucide-react';
+import { ArrowDown, CalendarDays, Image } from 'lucide-react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import heroImage from '../assets/images/hero.png';
-import ContactPopover from './ContactPopover';
 
 const HERO_IMAGE_PATH = heroImage;
 
@@ -76,18 +75,20 @@ export default function Hero({ onGalleryClick }: HeroProps) {
           transition={{ duration: 1.2, delay: 0.6, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
         >
-          <ContactPopover telegramText="Здравствуйте! Хочу забронировать домик Репка. Подскажите свободные даты.">
-            {({ onClick }) => (
-              <button
-                id="hero-primary-cta"
-                onClick={onClick}
-                className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-bg-white text-base font-medium py-4 px-8 rounded transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:translate-y-[-2px]"
-              >
-                <Send size={16} className="fill-current" />
-                <span>Написать хозяину</span>
-              </button>
-            )}
-          </ContactPopover>
+          <button
+            id="hero-primary-cta"
+            onClick={() => {
+              const el = document.querySelector('#booking');
+              if (el) {
+                const top = el.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top, behavior: 'smooth' });
+              }
+            }}
+            className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-bg-white text-base font-medium py-4 px-8 rounded transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:translate-y-[-2px]"
+          >
+            <CalendarDays size={16} />
+            <span>Выбрать даты</span>
+          </button>
 
           <button
             id="hero-secondary-cta"
