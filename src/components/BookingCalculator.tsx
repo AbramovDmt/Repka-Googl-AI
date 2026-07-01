@@ -543,7 +543,9 @@ export default function BookingCalculator() {
                           checkIn, checkOut, guests,
                           sauna: banyaEnabled && !banyaOnly,
                           bikesCount,
+                          bikesDays,
                           supsCount,
+                          supsDays,
                         }));
                         window.open(
                           `https://tg-app-smoky-five.vercel.app?startapp=${payload}`,
