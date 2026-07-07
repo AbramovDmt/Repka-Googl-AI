@@ -65,7 +65,7 @@ export default function Directions() {
                     Двигайтесь по <strong className="text-white">Дмитровскому шоссе</strong>. Дорога от МКАД занимает около 1 часа в будни или 1.5 часа в пятницу вечером. СНТ тихое, заезд свободный.
                   </p>
                   <span className="text-[11px] font-mono text-brand-sand tracking-wide bg-white/5 py-1 px-2.5 rounded border border-white/5 inline-block">
-                    ✓ Огороженная стоянка на 2 авто (подходит для прицепа)
+                    ✓ Огороженная стоянка на 4 авто (подходит для прицепа)
                   </span>
                 </div>
               </div>
@@ -78,7 +78,7 @@ export default function Directions() {
                 <div>
                   <h3 className="font-serif italic text-lg sm:text-xl text-white mb-2">На электричке</h3>
                   <p className="text-xs sm:text-sm text-brand-bg/75 leading-relaxed font-light mb-2">
-                    Савёловский вокзал → станция <strong className="text-white">Запрудня</strong> (~1.5 часа в пути). Далее 10-15 минут на местном такси до ворот СНТ. По согласованию Сергей может встретить вас на вокзале Дмитрова.
+                    Савёловский вокзал → станция <strong className="text-white">Дмитровская</strong> или <strong className="text-white">Каналстрой</strong> (~1.5 часа в пути). Далее 10-15 минут на местном такси до ворот СНТ. По согласованию Сергей может встретить вас на вокзале Дмитрова.
                   </p>
                 </div>
               </div>

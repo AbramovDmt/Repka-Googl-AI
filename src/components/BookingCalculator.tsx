@@ -319,7 +319,7 @@ export default function BookingCalculator() {
                     </div>
                     <div>
                       <span className="text-sm font-semibold text-brand-text block">
-                        Аренда велосипедов (+1 500 ₽/сутки за комп.)
+                        Аренда велосипедов (+1 500 ₽/сутки за шт.)
                       </span>
                       <span className="text-[11px] text-brand-text-mid leading-tight block font-light">
                         Качественные велосипеды для поездки на канал им. Москвы и по лесу. Доступно: 4 шт.
@@ -374,10 +374,10 @@ export default function BookingCalculator() {
                     </div>
                     <div>
                       <span className="text-sm font-semibold text-brand-text block">
-                        Аренда SUP-бордов (+800 ₽/день за комп.)
+                        Аренда SUP-бордов (+800 ₽/день за шт.)
                       </span>
                       <span className="text-[11px] text-brand-text-mid leading-tight block font-light">
-                        Вёсла, жилеты, гермосумки в наборе. Канал идеален для плавания. Доступно: 2 шт.
+                        Вёсла в наборе. Канал идеален для плавания. Доступно: 2 шт.
                       </span>
                     </div>
                   </div>

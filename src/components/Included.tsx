@@ -33,7 +33,7 @@ export default function Included() {
 
           <div className="bg-brand-bg border border-brand-sand/40 p-4 rounded-md text-xs sm:text-sm text-brand-text-mid max-w-sm">
             <span className="font-bold text-brand-accent block mb-0.5">В бане включено всё:</span>
-            санузел, душ, мини-холодильник с охладительными напитками, фен, простыни и уютная обеденная деревянная мебель.
+            санузел, душ, мини-холодильник, фен, простыни и уютная обеденная деревянная мебель.
           </div>
         </div>
 
@@ -98,7 +98,7 @@ export default function Included() {
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-brand-sand block mb-2">ВАЖНОЕ ПРИМЕЧАНИЕ</span>
             <h4 className="font-serif italic text-xl sm:text-2xl mb-4 text-white">Банный ритуал в «Репке»</h4>
             <p className="text-sm text-gray-300 leading-relaxed font-light mb-4">
-              Наша баня — традиционная, дровяная, с мягким мелкодисперсным паром. Баню можно заказать отдельно от домика — внутри свой санузел, душ, мини-кухня и холодильник, всё нужное под рукой. Отдельно — от 1 500 ₽/час (минимум 3 часа), вместе с домиком — 8 000 ₽/сутки.
+              Наша баня — традиционная, дровяная, с мягким мелкодисперсным паром. Баню можно заказать отдельно от домика — внутри свой санузел, душ, мини-кухня и холодильник, всё нужное под рукой. Отдельно — от 1 500 ₽/час (минимум 3 часа), при аренде домика — 8 000 ₽/сутки.
             </p>
             <div className="flex flex-wrap gap-4 items-center mt-6 pt-4 border-t border-white/10 text-xs sm:text-sm font-mono text-brand-sand">
               <span>✓ Травяной чай включен</span>
