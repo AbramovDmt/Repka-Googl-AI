@@ -36,7 +36,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="text-xs text-brand-bg/60 leading-relaxed font-light max-w-sm">
-            Ваш идеальный уголок спокойствия и замедления в 63 км от столицы. Современный лесной дом с дровяной баней и открытой огневой зоной на вековом березовом участке.
+            Ваш идеальный уголок спокойствия и замедления в 63 км от столицы. Современный лесной дом с дровяной баней и открытой огневой зоной на березовом участке.
           </p>
           <div className="flex gap-1.5 items-center pt-2">
             <span className="text-[10px] font-mono tracking-widest text-brand-sand bg-white/5 px-2.5 py-1 rounded border border-white/5">
