@@ -23,11 +23,29 @@ import imgSup from '../assets/images/sup.png';
 import imgSurr1 from '../assets/images/surroundings_1.png';
 import imgSurr2 from '../assets/images/surroundings_2.png';
 import imgSurr3 from '../assets/images/surroundings_3.png';
+import imgSurr4 from '../assets/images/surroundings_4.jpg';
+import imgPark from '../assets/images/park.jpg';
+import imgTerrace from '../assets/images/terrace.jpg';
+import imgBanya7 from '../assets/images/banya_7.jpg';
+import imgBanya8 from '../assets/images/banya_8.jpg';
+import imgBanya9 from '../assets/images/banya_9.jpg';
+import imgBanya10 from '../assets/images/banya_10.jpg';
+import imgBanya11 from '../assets/images/banya_11.jpg';
+import imgBanya12 from '../assets/images/banya_12.jpg';
+import imgBanya13 from '../assets/images/banya_13.jpg';
+import imgBanya14 from '../assets/images/banya_14.jpg';
+import imgInt8 from '../assets/images/interior_8.jpg';
+import imgInt9 from '../assets/images/interior_9.jpg';
+import imgInt10 from '../assets/images/interior_10.jpg';
+import imgInt11 from '../assets/images/interior_11.jpg';
+import imgInt12 from '../assets/images/interior_12.jpg';
 
 const imageMap: Record<string, string> = {
   '@HERO@': imgHero,
   '@FACADE@': imgFacade,
   '@CAMPFIRE@': imgCampfire,
+  '@PARK@': imgPark,
+  '@TERRACE@': imgTerrace,
   '@INT1@': imgInt1,
   '@INT2@': imgInt2,
   '@INT3@': imgInt3,
@@ -35,16 +53,30 @@ const imageMap: Record<string, string> = {
   '@INT5@': imgInt5,
   '@INT6@': imgInt6,
   '@INT7@': imgInt7,
+  '@INT8@': imgInt8,
+  '@INT9@': imgInt9,
+  '@INT10@': imgInt10,
+  '@INT11@': imgInt11,
+  '@INT12@': imgInt12,
   '@BANYA1@': imgBanya1,
   '@BANYA2@': imgBanya2,
   '@BANYA3@': imgBanya3,
   '@BANYA4@': imgBanya4,
   '@BANYA5@': imgBanya5,
   '@BANYA6@': imgBanya6,
+  '@BANYA7@': imgBanya7,
+  '@BANYA8@': imgBanya8,
+  '@BANYA9@': imgBanya9,
+  '@BANYA10@': imgBanya10,
+  '@BANYA11@': imgBanya11,
+  '@BANYA12@': imgBanya12,
+  '@BANYA13@': imgBanya13,
+  '@BANYA14@': imgBanya14,
   '@SUP@': imgSup,
   '@SURR1@': imgSurr1,
   '@SURR2@': imgSurr2,
   '@SURR3@': imgSurr3,
+  '@SURR4@': imgSurr4,
 };
 
 const resolvedPhotos: GalleryItem[] = galleryPhotos.map(photo => ({
