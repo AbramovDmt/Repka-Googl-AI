@@ -39,6 +39,8 @@ import imgInt9 from '../assets/images/interior_9.jpg';
 import imgInt10 from '../assets/images/interior_10.jpg';
 import imgInt11 from '../assets/images/interior_11.jpg';
 import imgInt12 from '../assets/images/interior_12.jpg';
+import imgInt13 from '../assets/images/interior_13.jpg';
+import imgInt14 from '../assets/images/interior_14.jpg';
 
 const imageMap: Record<string, string> = {
   '@HERO@': imgHero,
@@ -58,6 +60,8 @@ const imageMap: Record<string, string> = {
   '@INT10@': imgInt10,
   '@INT11@': imgInt11,
   '@INT12@': imgInt12,
+  '@INT13@': imgInt13,
+  '@INT14@': imgInt14,
   '@BANYA1@': imgBanya1,
   '@BANYA2@': imgBanya2,
   '@BANYA3@': imgBanya3,
