@@ -60,13 +60,13 @@ export default function Header() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-baseline gap-2 group"
+            className="flex items-stretch gap-2 group"
           >
             <span className="font-serif italic font-bold text-2xl leading-none tracking-tight relative">
               Репка
               <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled ? 'bg-brand-accent' : 'bg-white'}`}></span>
             </span>
-            <span className={`text-xs leading-none uppercase tracking-widest font-mono border px-1.5 py-1 rounded ${scrolled ? 'border-brand-green/30 text-brand-green' : 'border-white/30 text-white/80'}`}>
+            <span className={`flex items-center justify-center text-xs leading-none uppercase tracking-widest font-mono border px-1.5 py-1 rounded ${scrolled ? 'border-brand-green/30 text-brand-green' : 'border-white/30 text-white/80'}`}>
               Домик в роще
             </span>
           </a>
@@ -152,9 +152,9 @@ export default function Header() {
             >
               <div>
                 <div className="flex items-center justify-between mb-10 pb-6 border-b border-brand-sand/30">
-                  <span className="font-serif italic font-bold text-2xl text-brand-text-mid flex items-baseline gap-2">
+                  <span className="font-serif italic font-bold text-2xl text-brand-text-mid flex items-stretch gap-2">
                     Репка
-                    <span className="text-[10px] leading-none uppercase tracking-widest font-mono border border-brand-green/30 text-brand-green px-1.5 py-1 rounded">
+                    <span className="flex items-center justify-center text-[10px] leading-none uppercase tracking-widest font-mono border border-brand-green/30 text-brand-green px-1.5 py-1 rounded">
                       Домик в роще
                     </span>
                   </span>
