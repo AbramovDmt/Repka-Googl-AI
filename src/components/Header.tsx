@@ -60,7 +60,7 @@ export default function Header() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center gap-2 group"
+            className="flex items-baseline gap-2 group"
           >
             <span className="font-serif italic font-bold text-2xl leading-none tracking-tight relative">
               Репка
