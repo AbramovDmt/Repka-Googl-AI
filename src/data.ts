@@ -345,7 +345,7 @@ export const amenitiesList: Amenity[] = [
     description: '2 взрослых, 1 подростковый и 1 детский надежных велосипеда для лесных прогулок вдоль канала им. Москвы.',
     icon: 'Bike',
     included: false,
-    price: '1 500 ₽/день'
+    price: '1 500 ₽/день за шт.'
   },
   {
     id: 'sups',
@@ -353,7 +353,7 @@ export const amenitiesList: Amenity[] = [
     description: '2 современных SUP-борда с веслами. Канал в 4 минутах пешком!',
     icon: 'Waves',
     included: false,
-    price: '800 ₽/день'
+    price: '800 ₽/день за шт.'
   },
   {
     id: 'privacy',
