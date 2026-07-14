@@ -27,7 +27,7 @@ export default function Footer() {
 
         {/* Col 1: Brand Wordmark (3 of 12 cols on desktop, full width on tablet) */}
         <div className="sm:col-span-2 lg:col-span-3 space-y-4 min-w-0">
-          <div className="flex items-center gap-2">
+          <div className="flex items-baseline gap-2">
             <span className="font-serif italic font-bold text-3xl leading-none tracking-tight text-white select-none">
               Репка
             </span>

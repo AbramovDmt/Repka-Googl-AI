@@ -152,7 +152,7 @@ export default function Header() {
             >
               <div>
                 <div className="flex items-center justify-between mb-10 pb-6 border-b border-brand-sand/30">
-                  <span className="font-serif italic font-bold text-2xl text-brand-text-mid flex items-center gap-2">
+                  <span className="font-serif italic font-bold text-2xl text-brand-text-mid flex items-baseline gap-2">
                     Репка
                     <span className="text-[10px] leading-none uppercase tracking-widest font-mono border border-brand-green/30 text-brand-green px-1.5 py-1 rounded">
                       Домик в роще
