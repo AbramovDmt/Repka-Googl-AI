@@ -31,7 +31,7 @@ export default function Footer() {
             <span className="font-serif italic font-bold text-3xl leading-none tracking-tight text-white select-none">
               Репка
             </span>
-            <span className="flex items-center justify-center text-xs leading-none uppercase tracking-widest font-mono border border-white/20 text-white/70 px-1.5 py-1 rounded">
+            <span className="flex items-center justify-center text-xs leading-none uppercase tracking-widest font-mono border border-white/20 text-white/70 px-1.5 py-1 rounded translate-y-[15%]">
               Домик в роще
             </span>
           </div>
