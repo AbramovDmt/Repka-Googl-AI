@@ -67,27 +67,6 @@ export const galleryPhotos: GalleryItem[] = [
     description: 'Индукционная плита, холодильник, турка и вся нужная посуда.'
   },
   {
-    id: '8',
-    url: '@INT5@',
-    category: 'interior',
-    title: 'Ванная комната',
-    description: 'Современная ванная с тёплым полом, раковиной на столешнице и всеми удобствами.'
-  },
-  {
-    id: '9',
-    url: '@INT6@',
-    category: 'interior',
-    title: 'Спальное гнездо на антресолях',
-    description: 'Двуспальная кровать под скатом крыши — самое уютное место в доме.'
-  },
-  {
-    id: '10',
-    url: '@INT7@',
-    category: 'interior',
-    title: 'Вид с антресолей',
-    description: 'Панорама гостиной с высоты второго уровня — ощущение простора и высоких потолков.'
-  },
-  {
     id: '23',
     url: '@INT8@',
     category: 'interior',
@@ -116,13 +95,41 @@ export const galleryPhotos: GalleryItem[] = [
     description: 'Тарелки, сковороды и турка — всё нужное для готовки уже на месте.'
   },
   {
+    id: '8',
+    url: '@INT5@',
+    category: 'interior',
+    title: 'Ванная комната',
+    description: 'Современная ванная с тёплым полом, раковиной на столешнице и всеми удобствами.'
+  },
+  {
     id: '27',
     url: '@INT12@',
     category: 'interior',
     title: 'Душевая зона в ванной',
     description: 'Тропический душ и тёплый пол в ванной комнате дома.'
   },
+  {
+    id: '9',
+    url: '@INT6@',
+    category: 'interior',
+    title: 'Спальное гнездо на антресолях',
+    description: 'Двуспальная кровать под скатом крыши — самое уютное место в доме.'
+  },
+  {
+    id: '10',
+    url: '@INT7@',
+    category: 'interior',
+    title: 'Вид с антресолей',
+    description: 'Панорама гостиной с высоты второго уровня — ощущение простора и высоких потолков.'
+  },
   // banya
+  {
+    id: '28',
+    url: '@BANYA7@',
+    category: 'banya',
+    title: 'Баня снаружи',
+    description: 'Отдельно стоящее здание бани с собственной террасой среди берёз.'
+  },
   {
     id: '11',
     url: '@BANYA1@',
@@ -136,41 +143,6 @@ export const galleryPhotos: GalleryItem[] = [
     category: 'banya',
     title: 'Гостиная бани с кухней',
     description: 'Холодильник, чайник и всё для чаепития — комфортный перерыв между заходами.'
-  },
-  {
-    id: '13',
-    url: '@BANYA3@',
-    category: 'banya',
-    title: 'Душевая',
-    description: 'Тропический душ в бане — контрастный душ после горячей парной.'
-  },
-  {
-    id: '14',
-    url: '@BANYA4@',
-    category: 'banya',
-    title: 'Вход в парную',
-    description: 'Предбанник с вениками и принадлежностями перед настоящей дровяной парной.'
-  },
-  {
-    id: '15',
-    url: '@BANYA5@',
-    category: 'banya',
-    title: 'Дровяная парная',
-    description: 'Жаркая парная с настоящей дровяной печью, полками и берёзовыми вениками.'
-  },
-  {
-    id: '16',
-    url: '@BANYA6@',
-    category: 'banya',
-    title: 'Санузел в бане',
-    description: 'Отдельный туалет в банном комплексе — удобство продумано до мелочей.'
-  },
-  {
-    id: '28',
-    url: '@BANYA7@',
-    category: 'banya',
-    title: 'Баня снаружи',
-    description: 'Отдельно стоящее здание бани с собственной террасой среди берёз.'
   },
   {
     id: '29',
@@ -208,6 +180,20 @@ export const galleryPhotos: GalleryItem[] = [
     description: 'Ящик с посудой и приборами — банный комплекс полностью автономен.'
   },
   {
+    id: '13',
+    url: '@BANYA3@',
+    category: 'banya',
+    title: 'Душевая',
+    description: 'Тропический душ в бане — контрастный душ после горячей парной.'
+  },
+  {
+    id: '14',
+    url: '@BANYA4@',
+    category: 'banya',
+    title: 'Вход в парную',
+    description: 'Предбанник с вениками и принадлежностями перед настоящей дровяной парной.'
+  },
+  {
     id: '34',
     url: '@BANYA13@',
     category: 'banya',
@@ -221,6 +207,20 @@ export const galleryPhotos: GalleryItem[] = [
     title: 'Уходовые средства в предбаннике',
     description: 'Шампунь, гель для душа и бальзам для волос — привозить свои не нужно.'
   },
+  {
+    id: '15',
+    url: '@BANYA5@',
+    category: 'banya',
+    title: 'Дровяная парная',
+    description: 'Жаркая парная с настоящей дровяной печью, полками и берёзовыми вениками.'
+  },
+  {
+    id: '16',
+    url: '@BANYA6@',
+    category: 'banya',
+    title: 'Санузел в бане',
+    description: 'Отдельный туалет в банном комплексе — удобство продумано до мелочей.'
+  },
   // surroundings
   {
     id: '17',
@@ -228,6 +228,13 @@ export const galleryPhotos: GalleryItem[] = [
     category: 'surroundings',
     title: 'SUP-борды',
     description: '2 SUP-борда с вёслами — канал имени Москвы в 4 минутах пешком.'
+  },
+  {
+    id: '36',
+    url: '@SURR4@',
+    category: 'surroundings',
+    title: 'Велопрогулка вдоль канала',
+    description: 'Дорожка вдоль канала имени Москвы — рядом с домиком, для велопрогулок с детьми.'
   },
   {
     id: '18',
@@ -249,13 +256,6 @@ export const galleryPhotos: GalleryItem[] = [
     category: 'surroundings',
     title: 'Воздушные шары над рекой',
     description: 'Полёты на воздушном шаре над живописным каналом — яркое впечатление рядом.'
-  },
-  {
-    id: '36',
-    url: '@SURR4@',
-    category: 'surroundings',
-    title: 'Велопрогулка вдоль канала',
-    description: 'Дорожка вдоль канала имени Москвы — рядом с домиком, для велопрогулок с детьми.'
   },
 ];
 
