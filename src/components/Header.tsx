@@ -190,7 +190,7 @@ export default function Header() {
               <div className="flex flex-col gap-4 mt-auto pt-8 border-t border-brand-sand/30">
                 <a
                   id="drawer-tel-link"
-                  href="tel:+79151347999"
+                  href="tel:+79995799908"
                   className="flex items-center gap-3 text-brand-text hover:text-brand-accent transition-colors py-2 text-sm font-medium"
                 >
                   <Phone size={16} className="text-brand-green" />
