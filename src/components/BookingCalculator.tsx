@@ -3,6 +3,7 @@ import { Calendar, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, Exter
 import { motion } from 'motion/react';
 import AvailabilityCalendar from './AvailabilityCalendar';
 import { useBookedDates } from '../hooks/useBookedDates';
+import { getTelegramLink } from '../lib/contacts';
 
 export default function BookingCalculator() {
   // Setup default dates: checkin = tomorrow, checkout = in 2 days (minimum 2 nights)
@@ -533,25 +534,13 @@ export default function BookingCalculator() {
                     </span>
                   </div>
 
-                  {/* Open Telegram Mini App with prefilled booking data */}
+                  {/* Send prefilled booking summary directly to Sergey via Telegram */}
                   <div className="pt-6">
                     <button
                       id="calculator-book-tg-cta"
                       disabled={!!validationError || !checkIn || !checkOut}
                       onClick={() => {
-                        const payload = btoa(JSON.stringify({
-                          checkIn, checkOut, guests,
-                          sauna: banyaEnabled && !banyaOnly,
-                          bikesCount,
-                          bikesDays,
-                          supsCount,
-                          supsDays,
-                        }));
-                        window.open(
-                          `https://tg-app-smoky-five.vercel.app?startapp=${payload}`,
-                          '_blank',
-                          'noopener'
-                        );
+                        window.open(getTelegramLink(getPrefilledMessage()), '_blank', 'noopener');
                       }}
                       className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                     >
@@ -559,7 +548,7 @@ export default function BookingCalculator() {
                       <span>Забронировать через Telegram</span>
                     </button>
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
-                      Откроется приложение с уже заполненными датами, гостями и выбранными допами
+                      Откроется чат с Сергеем в Telegram с уже готовым сообщением о брони
                     </span>
                   </div>
 
