@@ -156,7 +156,9 @@ export default function Footer() {
         <div className="flex gap-4">
           <span>Сделано с любовью</span>
           <span>•</span>
-          <span>Не является публичной офертой</span>
+          <a href="/privacy" className="hover:text-white transition-colors">Политика ПДн</a>
+          <span>•</span>
+          <a href="/oferta" className="hover:text-white transition-colors">Оферта</a>
         </div>
       </div>
     </footer>
