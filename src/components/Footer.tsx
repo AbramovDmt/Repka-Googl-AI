@@ -151,7 +151,7 @@ export default function Footer() {
       {/* Extreme Bottom details details card */}
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs text-brand-bg/40 font-mono">
         <span>
-          © {currentYear} «Репка» — дом в роще. Все права сохранены.
+          © {currentYear} «Репка» — домик в роще. Все права сохранены.
         </span>
         <div className="flex gap-4">
           <span>Сделано с любовью</span>
