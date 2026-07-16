@@ -31,6 +31,7 @@ export default function BookingCalculator() {
   const [supsDays, setSupsDays] = useState(1);
 
   // Calculated results
+  const [sendStatus, setSendStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [nightsCount, setNightsCount] = useState(2);
   const [weekdaysCount, setWeekdaysCount] = useState(2);
   const [weekendsCount, setWeekendsCount] = useState(0);
@@ -534,21 +535,40 @@ export default function BookingCalculator() {
                     </span>
                   </div>
 
-                  {/* Send prefilled booking summary directly to Sergey via Telegram */}
+                  {/* Send booking summary to Sergey via Telegram bot; fall back to opening a prefilled chat if the bot request fails */}
                   <div className="pt-6">
                     <button
                       id="calculator-book-tg-cta"
-                      disabled={!!validationError || !checkIn || !checkOut}
-                      onClick={() => {
-                        window.open(getTelegramLink(getPrefilledMessage()), '_blank', 'noopener');
+                      disabled={!!validationError || !checkIn || !checkOut || sendStatus === 'sending'}
+                      onClick={async () => {
+                        const text = getPrefilledMessage();
+                        setSendStatus('sending');
+                        try {
+                          const res = await fetch('/api/send-order', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ text }),
+                          });
+                          if (!res.ok) throw new Error('send failed');
+                          setSendStatus('sent');
+                        } catch {
+                          setSendStatus('error');
+                          window.open(getTelegramLink(text), '_blank', 'noopener');
+                        }
                       }}
                       className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                     >
                       <Send size={15} className="fill-current" />
-                      <span>Забронировать через Telegram</span>
+                      <span>
+                        {sendStatus === 'sending' ? 'Отправляем…' : sendStatus === 'sent' ? 'Заявка отправлена!' : 'Забронировать через Telegram'}
+                      </span>
                     </button>
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
-                      Откроется чат с Сергеем в Telegram с уже готовым сообщением о брони
+                      {sendStatus === 'sent'
+                        ? 'Сергей получил вашу заявку и скоро свяжется с вами'
+                        : sendStatus === 'error'
+                        ? 'Не удалось отправить автоматически — открыли чат с Сергеем, отправьте сообщение вручную'
+                        : 'Заявка уйдёт Сергею в Telegram с деталями брони'}
                     </span>
                   </div>
 
