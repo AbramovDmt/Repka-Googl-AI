@@ -1,6 +1,6 @@
 import { Trees, Coffee, Compass } from 'lucide-react';
 import { motion } from 'motion/react';
-import loftImage from '../assets/images/interior_6.png';
+import loftImage from '../assets/images/interior_6.jpg';
 
 const LOFT_IMAGE_PATH = loftImage;
 

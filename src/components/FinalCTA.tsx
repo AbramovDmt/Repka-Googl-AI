@@ -1,7 +1,7 @@
 import { Send, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import ContactPopover from './ContactPopover';
-import sergeyPhoto from '../assets/images/sergey.png';
+import sergeyPhoto from '../assets/images/sergey.jpg';
 
 export default function FinalCTA() {
   return (
