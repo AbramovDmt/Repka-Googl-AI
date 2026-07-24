@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.repkadomik.ru" }],
+      "destination": "https://repkadomik.ru/:path*",
+      "permanent": true
+    }
+  ]
+}
