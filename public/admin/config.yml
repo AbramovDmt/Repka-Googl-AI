@@ -1,0 +1,75 @@
+backend:
+  name: github
+  repo: AbramovDmt/Repka-Googl-AI
+  branch: main
+  base_url: https://repkadomik.ru
+  auth_endpoint: api/auth
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "gallery"
+    label: "Фотогалерея"
+    files:
+      - name: "gallery"
+        label: "Все фото"
+        file: "content/gallery.json"
+        fields:
+          - name: photos
+            label: "Фото"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: id, label: "ID (не менять)", widget: string }
+              - { name: url, label: "Фото", widget: image }
+              - name: category
+                label: "Раздел"
+                widget: select
+                options:
+                  - { label: "Снаружи", value: "exterior" }
+                  - { label: "Внутри", value: "interior" }
+                  - { label: "Баня", value: "banya" }
+                  - { label: "Окрестности", value: "surroundings" }
+              - { name: title, label: "Название", widget: string }
+              - { name: description, label: "Описание", widget: text }
+
+  - name: "services"
+    label: "Услуги и цены"
+    files:
+      - name: "services"
+        label: "Список услуг"
+        file: "content/services.json"
+        fields:
+          - name: items
+            label: "Услуги"
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: id, label: "ID (не менять)", widget: string }
+              - { name: name, label: "Название", widget: string }
+              - { name: description, label: "Описание", widget: text }
+              - { name: icon, label: "Иконка (не менять без разработчика)", widget: string }
+              - { name: included, label: "Включено в стоимость", widget: boolean, default: true }
+              - { name: price, label: "Цена (если платно/с доплатой)", widget: string, required: false }
+
+  - name: "rules"
+    label: "Условия проживания"
+    files:
+      - name: "rules"
+        label: "Правила"
+        file: "content/rules.json"
+        fields:
+          - { name: allowed, label: "Разрешено", widget: list, field: { name: item, widget: string, label: "Пункт" } }
+          - { name: prohibited, label: "Запрещено", widget: list, field: { name: item, widget: string, label: "Пункт" } }
+          - { name: footnote, label: "Строка внизу (заезд/выезд/залог)", widget: string }
+
+  - name: "settings"
+    label: "Контакты"
+    files:
+      - name: "settings"
+        label: "Телефон"
+        file: "content/settings.json"
+        fields:
+          - { name: phoneDisplay, label: "Телефон (как показывать)", widget: string, hint: "Пример: +7 (999) 579-99-08" }
+          - { name: phoneHref, label: "Телефон (для кнопки звонка, только цифры и +)", widget: string, hint: "Пример: +79995799908" }

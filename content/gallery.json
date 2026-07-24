@@ -1,4 +1,5 @@
-[
+{
+"photos": [
   { "id": "1", "url": "/images/hero.jpg", "category": "exterior", "title": "Репка: дом в роще и баня", "description": "Весь комплекс на одном кадре: треугольный домик, баня и просторная деревянная терраса среди берёз." },
   { "id": "2", "url": "/images/facade.jpg", "category": "exterior", "title": "Треугольный фасад Репки", "description": "Классический треугольный фасад с панорамным окном — визитная карточка домика." },
   { "id": "3", "url": "/images/campfire.jpg", "category": "exterior", "title": "Костровая зона", "description": "Гравийная площадка с кострищем и деревянными скамьями под кронами берёз." },
@@ -38,3 +39,4 @@
   { "id": "19", "url": "/images/surroundings_2.jpg", "category": "surroundings", "title": "Страусиная ферма", "description": "Страусиная ферма в нескольких километрах — необычная экскурсия для гостей." },
   { "id": "20", "url": "/images/surroundings_3.jpg", "category": "surroundings", "title": "Воздушные шары над рекой", "description": "Полёты на воздушном шаре над живописным каналом — яркое впечатление рядом." }
 ]
+}

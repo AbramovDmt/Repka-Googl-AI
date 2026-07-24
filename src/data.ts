@@ -2,8 +2,8 @@ import { Review, FAQItem, GalleryItem, Amenity } from './types';
 import galleryData from '../content/gallery.json';
 import servicesData from '../content/services.json';
 
-export const galleryPhotos = galleryData as GalleryItem[];
-export const amenitiesList = servicesData as Amenity[];
+export const galleryPhotos = galleryData.photos as GalleryItem[];
+export const amenitiesList = servicesData.items as Amenity[];
 
 export const reviewsList: Review[] = [
   {
