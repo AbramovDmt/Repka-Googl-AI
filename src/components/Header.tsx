@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Send, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ContactPopover from './ContactPopover';
+import settings from '../../content/settings.json';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -190,7 +191,7 @@ export default function Header() {
               <div className="flex flex-col gap-4 mt-auto pt-8 border-t border-brand-sand/30">
                 <a
                   id="drawer-tel-link"
-                  href="tel:+79995799908"
+                  href={`tel:${settings.phoneHref}`}
                   className="flex items-center gap-3 text-brand-text hover:text-brand-accent transition-colors py-2 text-sm font-medium"
                 >
                   <Phone size={16} className="text-brand-green" />

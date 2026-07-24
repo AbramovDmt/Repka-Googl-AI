@@ -1,6 +1,7 @@
 import { Phone, MapPin, Send, Siren, Stethoscope } from 'lucide-react';
 import { MAX_LINK } from '../lib/contacts';
 import MaxIcon from './icons/MaxIcon';
+import settings from '../../content/settings.json';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -87,8 +88,8 @@ export default function Footer() {
 
             <div className="flex gap-2.5 items-center">
               <Phone size={14} className="text-brand-accent shrink-0" />
-              <a href="tel:+79995799908" className="hover:text-white transition-colors font-medium">
-                +7 (999) 579-99-08
+              <a href={`tel:${settings.phoneHref}`} className="hover:text-white transition-colors font-medium">
+                {settings.phoneDisplay}
               </a>
             </div>
 

@@ -1,9 +1,7 @@
 import { useRef } from 'react';
 import { ArrowDown, CalendarDays, Image } from 'lucide-react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
-import heroImage from '../assets/images/hero.jpg';
-
-const HERO_IMAGE_PATH = heroImage;
+const HERO_IMAGE_PATH = '/images/hero.jpg';
 
 interface HeroProps {
   onGalleryClick: () => void;

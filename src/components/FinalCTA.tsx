@@ -1,7 +1,8 @@
 import { Send, Phone, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import ContactPopover from './ContactPopover';
-import sergeyPhoto from '../assets/images/sergey.jpg';
+import settings from '../../content/settings.json';
+const sergeyPhoto = '/images/sergey.jpg';
 
 export default function FinalCTA() {
   return (
@@ -65,7 +66,7 @@ export default function FinalCTA() {
 
               <a
                 id="final-cta-tel-link"
-                href="tel:+79995799908"
+                href={`tel:${settings.phoneHref}`}
                 className="border border-white/20 bg-white/5 hover:bg-white/10 text-white py-4 px-8 rounded font-semibold text-sm flex items-center justify-center gap-3 transition-all cursor-pointer hover:translate-y-[-2px]"
               >
                 <Phone size={15} />

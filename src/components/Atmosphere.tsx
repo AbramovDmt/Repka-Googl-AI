@@ -1,8 +1,6 @@
 import { Trees, Coffee, Compass } from 'lucide-react';
 import { motion } from 'motion/react';
-import loftImage from '../assets/images/interior_6.jpg';
-
-const LOFT_IMAGE_PATH = loftImage;
+const LOFT_IMAGE_PATH = '/images/interior_6.jpg';
 
 export default function Atmosphere() {
   const tags = ['Для идеальных свиданий', 'Компания до 4 человек', 'Перезагрузка в тишине', 'Спокойный отдых у воды'];

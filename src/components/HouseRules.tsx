@@ -1,20 +1,7 @@
 import { CheckCircle2, XCircle } from 'lucide-react';
+import rules from '../../content/rules.json';
 
-const allowed = [
-  'Можно с детьми',
-  'Можно с питомцем (по согласованию, залог 10 000 ₽)',
-  'Бесконтактное заселение в удобное время',
-  'Есть отчётные документы для командировок',
-  'Можно приехать на машине с прицепом',
-];
-
-const prohibited = [
-  'Не курить в доме и бане (сигареты, кальян, вейп)',
-  'Без вечеринок и шумных компаний',
-  'Тишина на участке после 23:00',
-  'Без свечей и бенгальских огней в помещении',
-  'Без фейерверков на участке',
-];
+const { allowed, prohibited, footnote } = rules;
 
 export default function HouseRules() {
   return (
@@ -75,7 +62,7 @@ export default function HouseRules() {
 
         {/* Нижний акцент */}
         <p className="text-center text-xs text-brand-text-mid font-mono mt-10">
-          Заезд с 16:00 · Выезд до 12:00 · Максимум 4 гостя · Залог возвращается в течение суток после осмотра
+          {footnote}
         </p>
 
       </div>
