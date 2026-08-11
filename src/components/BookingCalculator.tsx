@@ -591,6 +591,11 @@ export default function BookingCalculator() {
                             id="calculator-book-tg-cta"
                             disabled={sendStatus === 'sending'}
                             onClick={async () => {
+                              if (!isValidPhone(phone)) {
+                                setPhoneError('Укажите телефон — без него Сергей не сможет вам перезвонить.');
+                                setConfirmStep(false);
+                                return;
+                              }
                               const text = getPrefilledMessage();
                               setSendStatus('sending');
                               try {
