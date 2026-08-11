@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink } from 'lucide-react';
+import { Calendar, Flame, Bike, Waves, ShieldAlert, Send, ArrowRight, Dog, ExternalLink, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 import AvailabilityCalendar from './AvailabilityCalendar';
 import { useBookedDates } from '../hooks/useBookedDates';
@@ -36,6 +36,11 @@ export default function BookingCalculator() {
   const [weekdaysCount, setWeekdaysCount] = useState(2);
   const [weekendsCount, setWeekendsCount] = useState(0);
   const [validationError, setValidationError] = useState<string | null>(null);
+
+  // Contact phone (needed so Sergey can call the guest back) + send confirmation step
+  const [phone, setPhone] = useState('');
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [confirmStep, setConfirmStep] = useState(false);
 
   // Pricing constants (Russian Rubles)
   const RATE_WEEKDAY = 8000;
@@ -107,6 +112,12 @@ export default function BookingCalculator() {
     return amount.toLocaleString('ru-RU') + ' ₽';
   };
 
+  // Loose phone check — just guards against an empty/garbage field, not strict E.164 parsing
+  const isValidPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '');
+    return digits.length === 10 || digits.length === 11;
+  };
+
   // Compile prefilled Telegram Message
   const getPrefilledMessage = () => {
     const formatDateRussian = (dateStr: string) => {
@@ -119,6 +130,7 @@ export default function BookingCalculator() {
 
     if (banyaOnly) {
       const text = `Здравствуйте, Сергей! Хочу заказать только баню, без домика.
+Телефон: ${phone}
 Дата: ${formatDateRussian(checkIn)}
 Длительность: ${banyaHours} ч.
 Количество гостей: ${guests} человек
@@ -136,6 +148,7 @@ export default function BookingCalculator() {
     const petsText = hasPets ? '\nС животными: Да' : '';
 
     const text = `Здравствуйте, Сергей! Я хочу забронировать домик Репка.
+Телефон: ${phone}
 Даты заезда: с ${formatDateRussian(checkIn)} по ${formatDateRussian(checkOut)} (${nightsCount} ночей)
 Количество гостей: ${guests} человек${petsText}${extrasText}
 Итоговая стоимость проживания: ${formatRubles(grandTotal)}
@@ -535,39 +548,96 @@ export default function BookingCalculator() {
                     </span>
                   </div>
 
-                  {/* Send booking summary to Sergey via Telegram bot; fall back to opening a prefilled chat if the bot request fails */}
-                  <div className="pt-6">
-                    <button
-                      id="calculator-book-tg-cta"
-                      disabled={!!validationError || !checkIn || !checkOut || sendStatus === 'sending'}
-                      onClick={async () => {
-                        const text = getPrefilledMessage();
-                        setSendStatus('sending');
-                        try {
-                          const res = await fetch('/api/send-order', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ text }),
-                          });
-                          if (!res.ok) throw new Error('send failed');
-                          setSendStatus('sent');
-                        } catch {
-                          setSendStatus('error');
-                          window.open(getTelegramLink(text), '_blank', 'noopener');
-                        }
+                  {/* Contact phone — so Sergey can call the guest back, message alone doesn't identify anyone */}
+                  <div className="pt-6 border-t border-white/10">
+                    <label htmlFor="input-phone" className="text-xs font-mono font-bold uppercase tracking-wider text-brand-sand block mb-2 text-left flex items-center gap-1.5">
+                      <Phone size={13} />
+                      Ваш телефон для связи
+                    </label>
+                    <input
+                      id="input-phone"
+                      type="tel"
+                      inputMode="tel"
+                      placeholder="+7 900 000-00-00"
+                      value={phone}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        if (phoneError) setPhoneError(null);
                       }}
-                      className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                    >
-                      <Send size={15} className="fill-current" />
-                      <span>
-                        {sendStatus === 'sending' ? 'Отправляем…' : sendStatus === 'sent' ? 'Заявка отправлена!' : 'Забронировать через Telegram'}
-                      </span>
-                    </button>
+                      className="w-full bg-white/5 border border-white/15 rounded px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-brand-accent"
+                    />
+                    {phoneError && (
+                      <span className="text-[11px] text-brand-accent block mt-1.5 text-left">{phoneError}</span>
+                    )}
+                  </div>
+
+                  {/* Send booking summary to Sergey via Telegram bot; preview + explicit confirm before it actually goes out */}
+                  <div className="pt-6">
+                    {confirmStep ? (
+                      <div className="space-y-3">
+                        <div className="bg-white/5 border border-white/10 rounded p-4 text-xs text-brand-bg/80 whitespace-pre-line leading-relaxed text-left">
+                          {getPrefilledMessage()}
+                        </div>
+                        <div className="flex gap-3">
+                          <button
+                            type="button"
+                            disabled={sendStatus === 'sending'}
+                            onClick={() => setConfirmStep(false)}
+                            className="flex-1 border border-white/20 text-white py-3 rounded font-medium text-sm hover:border-white/40 transition-colors disabled:opacity-50"
+                          >
+                            Изменить
+                          </button>
+                          <button
+                            id="calculator-book-tg-cta"
+                            disabled={sendStatus === 'sending'}
+                            onClick={async () => {
+                              const text = getPrefilledMessage();
+                              setSendStatus('sending');
+                              try {
+                                const res = await fetch('/api/send-order', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ text }),
+                                });
+                                if (!res.ok) throw new Error('send failed');
+                                setSendStatus('sent');
+                                setConfirmStep(false);
+                              } catch {
+                                setSendStatus('error');
+                                setConfirmStep(false);
+                                window.open(getTelegramLink(text), '_blank', 'noopener');
+                              }
+                            }}
+                            className="flex-1 bg-brand-accent hover:bg-brand-accent-hover text-white py-3 rounded font-medium text-sm flex items-center justify-center gap-2 transition-colors shadow-md tracking-wide disabled:opacity-50"
+                          >
+                            <Send size={15} className="fill-current" />
+                            {sendStatus === 'sending' ? 'Отправляем…' : 'Подтвердить и отправить'}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <button
+                        disabled={!!validationError || !checkIn || !checkOut || sendStatus === 'sent'}
+                        onClick={() => {
+                          if (!isValidPhone(phone)) {
+                            setPhoneError('Укажите телефон — без него Сергей не сможет вам перезвонить.');
+                            return;
+                          }
+                          setConfirmStep(true);
+                        }}
+                        className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                      >
+                        <Send size={15} className="fill-current" />
+                        <span>{sendStatus === 'sent' ? 'Заявка отправлена!' : 'Забронировать через Telegram'}</span>
+                      </button>
+                    )}
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
                       {sendStatus === 'sent'
                         ? 'Сергей получил вашу заявку и скоро свяжется с вами'
                         : sendStatus === 'error'
                         ? 'Не удалось отправить автоматически — открыли чат с Сергеем, отправьте сообщение вручную'
+                        : confirmStep
+                        ? 'Проверьте данные и подтвердите отправку'
                         : 'Заявка уйдёт Сергею в Telegram с деталями брони'}
                     </span>
                   </div>
