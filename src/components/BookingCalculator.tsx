@@ -633,7 +633,7 @@ export default function BookingCalculator() {
                         className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white py-4 rounded font-medium text-sm flex items-center justify-center gap-3 transition-colors shadow-md hover:translate-y-[-2px] tracking-wide disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                       >
                         <Send size={15} className="fill-current" />
-                        <span>{sendStatus === 'sent' ? 'Заявка отправлена!' : 'Забронировать через Telegram'}</span>
+                        <span>{sendStatus === 'sent' ? 'Заявка отправлена!' : 'Забронировать напрямую со скидкой'}</span>
                       </button>
                     )}
                     <span className="text-[10px] text-brand-bg/50 block text-center mt-3 font-mono">
