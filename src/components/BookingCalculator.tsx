@@ -38,7 +38,7 @@ export default function BookingCalculator() {
   const [validationError, setValidationError] = useState<string | null>(null);
 
   // Contact phone (needed so Sergey can call the guest back) + send confirmation step
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('+7 ');
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [confirmStep, setConfirmStep] = useState(false);
 
@@ -116,6 +116,23 @@ export default function BookingCalculator() {
   const isValidPhone = (value: string) => {
     const digits = value.replace(/\D/g, '');
     return digits.length === 10 || digits.length === 11;
+  };
+
+  // Auto-format as +7 XXX XXX-XX-XX while typing — 8 or bare 10 digits both normalize to +7
+  const formatPhoneInput = (raw: string) => {
+    let digits = raw.replace(/\D/g, '');
+    if (digits.length === 0) return '';
+    if (digits[0] === '8') digits = '7' + digits.slice(1);
+    if (digits[0] !== '7') digits = '7' + digits;
+    digits = digits.slice(0, 11);
+
+    const rest = digits.slice(1);
+    let out = '+7 ';
+    if (rest.length > 0) out += rest.slice(0, 3);
+    if (rest.length > 3) out += ' ' + rest.slice(3, 6);
+    if (rest.length > 6) out += '-' + rest.slice(6, 8);
+    if (rest.length > 8) out += '-' + rest.slice(8, 10);
+    return out;
   };
 
   // Compile prefilled Telegram Message
@@ -561,8 +578,13 @@ export default function BookingCalculator() {
                       placeholder="+7 900 000-00-00"
                       value={phone}
                       onChange={(e) => {
-                        setPhone(e.target.value);
+                        setPhone(formatPhoneInput(e.target.value));
                         if (phoneError) setPhoneError(null);
+                      }}
+                      onFocus={(e) => {
+                        if (!phone) setPhone('+7 ');
+                        // put the cursor at the end instead of before the auto-filled prefix
+                        requestAnimationFrame(() => e.target.setSelectionRange(e.target.value.length, e.target.value.length));
                       }}
                       className="w-full bg-white/5 border border-white/15 rounded px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-brand-accent"
                     />
