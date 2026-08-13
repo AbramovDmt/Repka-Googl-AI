@@ -50,6 +50,7 @@ export default function Included() {
                 key={amenity.id}
                 initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, scale: 0.95 }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.03, y: -4, transition: { duration: 0.2, ease: 'easeOut' } }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.5, delay: (index % 4) * 0.08, ease: 'easeOut' }}
                 className={`p-6 sm:p-8 rounded-md border text-left transition-all duration-300 flex flex-col justify-between ${

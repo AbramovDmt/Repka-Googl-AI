@@ -45,6 +45,7 @@ export default function FAQ() {
                 key={faq.id}
                 initial={shouldReduceMotion ? undefined : { opacity: 0, x: fromLeft ? -32 : 32 }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.015, y: -2, transition: { duration: 0.2, ease: 'easeOut' } }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: Math.min(index, 4) * 0.06, ease: 'easeOut' }}
                 className="bg-brand-bg-white border rounded-lg border-brand-sand/30 overflow-hidden transition-all duration-300"
