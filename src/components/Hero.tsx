@@ -12,6 +12,9 @@ export default function Hero({ onGalleryClick }: HeroProps) {
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const imageY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? ['0px', '0px'] : ['0px', '150px']);
+  // Content fades and lifts away as the hero scrolls out — pairs with the background parallax above
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], shouldReduceMotion ? [1, 1] : [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], shouldReduceMotion ? ['0px', '0px'] : ['0px', '-60px']);
 
   return (
     <div
@@ -33,7 +36,10 @@ export default function Hero({ onGalleryClick }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark via-brand-bg-dark/40 to-brand-bg-dark/60 z-10" />
 
       {/* Main Text Content */}
-      <div className="relative z-20 max-w-4xl mx-auto px-6 text-center text-brand-bg-white flex flex-col items-center justify-center">
+      <motion.div
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-20 max-w-4xl mx-auto px-6 text-center text-brand-bg-white flex flex-col items-center justify-center"
+      >
         {/* Small aesthetic tag */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -97,7 +103,7 @@ export default function Hero({ onGalleryClick }: HeroProps) {
             <span>Посмотреть фото</span>
           </button>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Bounce Down Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1">
