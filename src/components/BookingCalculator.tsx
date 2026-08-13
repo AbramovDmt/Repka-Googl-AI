@@ -571,23 +571,31 @@ export default function BookingCalculator() {
                       <Phone size={13} />
                       Ваш телефон для связи
                     </label>
-                    <input
-                      id="input-phone"
-                      type="tel"
-                      inputMode="tel"
-                      placeholder="+7 900 000-00-00"
-                      value={phone}
-                      onChange={(e) => {
-                        setPhone(formatPhoneInput(e.target.value));
-                        if (phoneError) setPhoneError(null);
-                      }}
-                      onFocus={(e) => {
-                        if (!phone) setPhone('+7 ');
-                        // put the cursor at the end instead of before the auto-filled prefix
-                        requestAnimationFrame(() => e.target.setSelectionRange(e.target.value.length, e.target.value.length));
-                      }}
-                      className="w-full bg-white/5 border border-white/15 rounded px-3 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-brand-accent"
-                    />
+                    <div className="relative">
+                      {/* Dim mask template sitting behind the input — typed characters cover it 1:1 (same mono font/spacing), untyped tail stays visible as a hint */}
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 flex items-center px-3 py-2.5 text-sm font-mono tracking-wide text-white/25 pointer-events-none select-none whitespace-pre"
+                      >
+                        +7 900 000-00-00
+                      </div>
+                      <input
+                        id="input-phone"
+                        type="tel"
+                        inputMode="tel"
+                        value={phone}
+                        onChange={(e) => {
+                          setPhone(formatPhoneInput(e.target.value));
+                          if (phoneError) setPhoneError(null);
+                        }}
+                        onFocus={(e) => {
+                          if (!phone) setPhone('+7 ');
+                          // put the cursor at the end instead of before the auto-filled prefix
+                          requestAnimationFrame(() => e.target.setSelectionRange(e.target.value.length, e.target.value.length));
+                        }}
+                        className="relative w-full bg-transparent border border-white/15 rounded px-3 py-2.5 text-sm font-mono tracking-wide text-white focus:outline-none focus:border-brand-accent"
+                      />
+                    </div>
                     {phoneError && (
                       <span className="text-[11px] text-brand-accent block mt-1.5 text-left">{phoneError}</span>
                     )}
