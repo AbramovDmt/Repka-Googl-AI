@@ -1,4 +1,5 @@
 import * as Icons from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { amenitiesList } from '../data';
 import { Amenity } from '../types';
 
@@ -10,6 +11,8 @@ function DynamicIcon({ name, className }: { name: string; className?: string }) 
 }
 
 export default function Included() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="amenities"
@@ -39,12 +42,16 @@ export default function Included() {
 
         {/* Conveniences Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {amenitiesList.map((amenity: Amenity) => {
+          {amenitiesList.map((amenity: Amenity, index: number) => {
             const isExtra = !amenity.included;
 
             return (
-              <div
+              <motion.div
                 key={amenity.id}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, scale: 0.95 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.5, delay: (index % 4) * 0.08, ease: 'easeOut' }}
                 className={`p-6 sm:p-8 rounded-md border text-left transition-all duration-300 flex flex-col justify-between ${
                   isExtra
                     ? 'border-brand-accent/25 bg-brand-bg/20 shadow-sm'
@@ -76,7 +83,7 @@ export default function Included() {
                     {amenity.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

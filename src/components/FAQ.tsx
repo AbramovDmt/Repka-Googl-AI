@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { HelpCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { faqList } from '../data';
 import { FAQItem } from '../types';
 import ContactPopover from './ContactPopover';
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>('f1'); // Open first item by default for great UX
+  const shouldReduceMotion = useReducedMotion();
 
   const toggleAccordion = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -34,12 +36,17 @@ export default function FAQ() {
 
         {/* Accordions Stack */}
         <div className="space-y-4" id="faq-accordions-group">
-          {faqList.map((faq: FAQItem) => {
+          {faqList.map((faq: FAQItem, index: number) => {
             const isOpen = openId === faq.id;
+            const fromLeft = index % 2 === 0;
 
             return (
-              <div
+              <motion.div
                 key={faq.id}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: fromLeft ? -32 : 32 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: Math.min(index, 4) * 0.06, ease: 'easeOut' }}
                 className="bg-brand-bg-white border rounded-lg border-brand-sand/30 overflow-hidden transition-all duration-300"
               >
                 {/* Accordion clickable header button */}
@@ -70,7 +77,7 @@ export default function FAQ() {
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             );
           })}
         </div>
