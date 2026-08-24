@@ -37,6 +37,7 @@
   { "id": "16", "url": "/images/banya_6.jpg", "category": "banya", "title": "Санузел в бане", "description": "Отдельный туалет в банном комплексе — удобство продумано до мелочей." },
   { "id": "17", "url": "/images/sup.jpg", "category": "surroundings", "title": "SUP-борды", "description": "2 SUP-борда с вёслами — канал имени Москвы в 4 минутах пешком." },
   { "id": "41", "url": "/images/sup_2.jpg", "category": "surroundings", "title": "SUP-прогулка по каналу", "description": "Гладкая вода и берёзовые берега — плыть здесь можно хоть целый вечер." },
+  { "id": "42", "url": "/images/surroundings_5.jpg", "category": "surroundings", "title": "Велосипеды для прогулок", "description": "Велосипеды у ворот — можно взять и покататься вдоль канала." },
   { "id": "36", "url": "/images/surroundings_4.jpg", "category": "surroundings", "title": "Велопрогулка вдоль канала", "description": "Дорожка вдоль канала имени Москвы — рядом с домиком, для велопрогулок с детьми." },
   { "id": "18", "url": "/images/surroundings_1.jpg", "category": "surroundings", "title": "Контактный зоопарк с оленями", "description": "Оленья ферма в окрестностях — незабываемые впечатления для всей семьи." },
   { "id": "19", "url": "/images/surroundings_2.jpg", "category": "surroundings", "title": "Страусиная ферма", "description": "Страусиная ферма в нескольких километрах — необычная экскурсия для гостей." },
