@@ -80,7 +80,7 @@ export default function Atmosphere() {
           
           <img
             src={LOFT_IMAGE_PATH}
-            alt="Спальный ярус в треугольном домике"
+            alt="Спальный ярус в домике для отдыха «Репка»"
             className="w-full h-full object-cover rounded-md shadow-md hover:scale-[1.01] transition-transform duration-500 relative z-10 border border-brand-sand/20"
             referrerPolicy="no-referrer"
           />
