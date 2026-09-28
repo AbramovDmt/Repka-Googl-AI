@@ -33,7 +33,7 @@ export default function Footer() {
               Репка
             </span>
             <span className="flex items-center justify-center text-xs leading-none uppercase tracking-widest font-mono border border-white/20 text-white/70 px-1.5 py-1 rounded translate-y-[12%]">
-              Домик в роще
+              Домик для отдыха
             </span>
           </div>
           <p className="text-xs text-brand-bg/60 leading-relaxed font-light max-w-sm">
@@ -152,7 +152,7 @@ export default function Footer() {
       {/* Extreme Bottom details details card */}
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] sm:text-xs text-brand-bg/40 font-mono">
         <span>
-          © {currentYear} «Репка» — домик в роще. Все права сохранены.
+          © {currentYear} «Репка» — домик для отдыха, Дмитровский район. Все права сохранены.
         </span>
         <div className="flex gap-4">
           <span>Сделано с любовью</span>
