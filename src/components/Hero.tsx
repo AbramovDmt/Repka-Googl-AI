@@ -26,7 +26,7 @@ export default function Hero({ onGalleryClick }: HeroProps) {
       <div className="absolute -top-[200px] -bottom-[200px] inset-x-0 z-0 overflow-hidden">
         <motion.img
           src={HERO_IMAGE_PATH}
-          alt="Треугольный домик Репка в берёзовой роще"
+          alt="Домик для отдыха «Репка» в берёзовой роще, Дмитровский район"
           style={{ y: imageY }}
           className="w-full h-full object-cover object-center"
           referrerPolicy="no-referrer"
@@ -48,7 +48,7 @@ export default function Hero({ onGalleryClick }: HeroProps) {
           className="mb-6"
         >
           <span className="text-xs uppercase tracking-[0.25em] text-brand-sand font-mono border border-brand-sand/30 bg-brand-bg-dark/60 backdrop-blur-sm px-4 py-1.5 rounded-full inline-block">
-            Уютное уединение в Подмосковье
+            Домик для отдыха «Репка» · Дмитровский район
           </span>
         </motion.div>
 
