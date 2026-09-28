@@ -68,7 +68,7 @@ export default function Header() {
               <span className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full ${scrolled ? 'bg-brand-accent' : 'bg-white'}`}></span>
             </span>
             <span className={`flex items-center justify-center text-xs leading-none uppercase tracking-widest font-mono border px-1.5 py-1 rounded translate-y-[12%] ${scrolled ? 'border-brand-green/30 text-brand-green' : 'border-white/30 text-white/80'}`}>
-              Домик в роще
+              Домик для отдыха
             </span>
           </a>
 
@@ -156,7 +156,7 @@ export default function Header() {
                   <span className="font-serif italic font-bold text-2xl text-brand-text-mid flex items-stretch gap-2">
                     Репка
                     <span className="flex items-center justify-center text-[10px] leading-none uppercase tracking-widest font-mono border border-brand-green/30 text-brand-green px-1.5 py-1 rounded translate-y-[12%]">
-                      Домик в роще
+                      Домик для отдыха
                     </span>
                   </span>
                   <button
