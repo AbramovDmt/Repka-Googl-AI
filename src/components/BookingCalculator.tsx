@@ -43,8 +43,8 @@ export default function BookingCalculator() {
   const [confirmStep, setConfirmStep] = useState(false);
 
   // Pricing constants (Russian Rubles)
-  const RATE_WEEKDAY = 8000;
-  const RATE_WEEKEND = 10000;
+  const RATE_WEEKDAY = 6000;
+  const RATE_WEEKEND = 7500;
   const BASE_DEPOSIT = 5000;
   const PETS_DEPOSIT = 10000;
   const BANYA_WITH_HOUSE_FIRST = 8000;
@@ -199,7 +199,7 @@ export default function BookingCalculator() {
         <div className="max-w-4xl mx-auto p-4 sm:p-6 mb-12 rounded bg-brand-bg-white border-2 border-brand-accent/30 text-center flex flex-col md:flex-row items-center justify-center gap-4">
           <span className="text-xs font-mono uppercase bg-brand-accent text-white py-1 px-3 rounded text-center font-bold">ОФФЕР ВЫХОДНОГО</span>
           <p className="text-sm sm:text-base text-brand-text leading-relaxed font-light m-0">
-            <strong>Двухдневные выходные на двоих</strong> пт–вс с баней обходятся всего в <strong>32 000 ₽</strong> <br className="hidden md:inline" />
+            <strong>Двухдневные выходные на двоих</strong> пт–вс с баней обходятся всего в <strong>27 000 ₽</strong> <br className="hidden md:inline" />
             (включает 2 ночи проживания и дровяную баню вместе с домиком)
           </p>
         </div>
